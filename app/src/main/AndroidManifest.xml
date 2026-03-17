@@ -23,6 +23,7 @@
         <activity android:name=".ui.auth.RegistrationActivity" />
         <activity android:name=".ui.TrangChuActivity" />
         <activity android:name=".ui.ChiTietSanPhamActivity" />
+        <activity android:name=".ui.admin.QuanLySanPhamActivity" />
 
     </application>
 

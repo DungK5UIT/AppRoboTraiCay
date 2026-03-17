@@ -70,6 +70,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TAIKHOAN);
         db.execSQL(CREATE_TABLE_NHOMSANPHAM);
         db.execSQL(CREATE_TABLE_SANPHAM);
+
+        // Seed Sample Data (Dev A's responsibility)
+        seedData(db);
+    }
+
+    private void seedData(SQLiteDatabase db) {
+        // Insert Categories
+        db.execSQL("INSERT INTO " + TABLE_NHOMSANPHAM + " (" + KEY_TENNHOM + ", " + KEY_HINHNHOM + ") VALUES ('Trái Cây Nội', 'ic_fruit_local')");
+        db.execSQL("INSERT INTO " + TABLE_NHOMSANPHAM + " (" + KEY_TENNHOM + ", " + KEY_HINHNHOM + ") VALUES ('Trái Cây Nhập', 'ic_fruit_import')");
+        db.execSQL("INSERT INTO " + TABLE_NHOMSANPHAM + " (" + KEY_TENNHOM + ", " + KEY_HINHNHOM + ") VALUES ('Combo Quà Tặng', 'ic_fruit_combo')");
+
+        // Insert Sample Products
+        db.execSQL("INSERT INTO " + TABLE_SANPHAM + " (" + KEY_TENSANPHAM + ", " + KEY_GIA + ", " + KEY_MOTA + ", " + KEY_IDNHOM + ") " +
+                "VALUES ('Táo Envy Mỹ', 150000, 'Táo Envy nhập khẩu từ Mỹ, giòn ngọt.', 2)");
+        db.execSQL("INSERT INTO " + TABLE_SANPHAM + " (" + KEY_TENSANPHAM + ", " + KEY_GIA + ", " + KEY_MOTA + ", " + KEY_IDNHOM + ") " +
+                "VALUES ('Xoài Cát Hòa Lộc', 85000, 'Xoài cát đặc sản Tiền Giang.', 1)");
+        db.execSQL("INSERT INTO " + TABLE_SANPHAM + " (" + KEY_TENSANPHAM + ", " + KEY_GIA + ", " + KEY_MOTA + ", " + KEY_IDNHOM + ") " +
+                "VALUES ('Nho Mẫu Đơn', 450000, 'Nho mẫu đơn Hàn Quốc cao cấp.', 2)");
     }
 
     @Override

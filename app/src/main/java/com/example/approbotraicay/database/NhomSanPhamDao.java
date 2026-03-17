@@ -42,4 +42,17 @@ public class NhomSanPhamDao {
         }
         return list;
     }
+
+    public int update(NhomSanPham nhom) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.KEY_TENNHOM, nhom.getTenNhom());
+        values.put(DatabaseHelper.KEY_HINHNHOM, nhom.getHinhAnh());
+        return db.update(DatabaseHelper.TABLE_NHOMSANPHAM, values, DatabaseHelper.KEY_ID + "=?", new String[]{String.valueOf(nhom.getId())});
+    }
+
+    public int delete(int id) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        return db.delete(DatabaseHelper.TABLE_NHOMSANPHAM, DatabaseHelper.KEY_ID + "=?", new String[]{String.valueOf(id)});
+    }
 }

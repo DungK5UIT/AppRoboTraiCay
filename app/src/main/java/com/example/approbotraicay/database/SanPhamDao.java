@@ -72,4 +72,20 @@ public class SanPhamDao {
         }
         return list;
     }
+
+    public int update(SanPham sp) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHelper.KEY_TENSANPHAM, sp.getTenSanPham());
+        values.put(DatabaseHelper.KEY_GIA, sp.getGia());
+        values.put(DatabaseHelper.KEY_HINHSANPHAM, sp.getHinhAnh());
+        values.put(DatabaseHelper.KEY_MOTA, sp.getMoTa());
+        values.put(DatabaseHelper.KEY_IDNHOM, sp.getIdNhom());
+        return db.update(DatabaseHelper.TABLE_SANPHAM, values, DatabaseHelper.KEY_ID + "=?", new String[]{String.valueOf(sp.getId())});
+    }
+
+    public int delete(int id) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        return db.delete(DatabaseHelper.TABLE_SANPHAM, DatabaseHelper.KEY_ID + "=?", new String[]{String.valueOf(id)});
+    }
 }

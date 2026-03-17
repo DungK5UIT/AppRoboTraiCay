@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reborn_activity_login);
+        setContentView(R.layout.activity_login);
 
         DatabaseHelper dbHelper = new DatabaseHelper(this);
         userDao = new UserDao(dbHelper);
@@ -40,10 +40,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        etUsername = findViewById(R.id.reborn_et_username);
-        etPassword = findViewById(R.id.reborn_et_password);
-        btnLogin = findViewById(R.id.reborn_btn_login);
-        tvGoToRegister = findViewById(R.id.reborn_tv_go_to_register);
+        etUsername = findViewById(R.id.et_username);
+        etPassword = findViewById(R.id.et_password);
+        btnLogin = findViewById(R.id.btn_login);
+        tvGoToRegister = findViewById(R.id.tv_go_to_register);
     }
 
     private void setupEvents() {

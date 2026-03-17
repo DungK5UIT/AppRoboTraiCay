@@ -21,7 +21,7 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reborn_activity_register);
+        setContentView(R.layout.activity_register);
 
         userDao = new UserDao(new DatabaseHelper(this));
 
@@ -30,13 +30,13 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        etUsername = findViewById(R.id.reg_et_username);
-        etPassword = findViewById(R.id.reg_et_password);
-        etFullName = findViewById(R.id.reg_et_fullname);
-        etEmail = findViewById(R.id.reg_et_email);
-        etPhone = findViewById(R.id.reg_et_phone);
-        btnRegister = findViewById(R.id.reg_btn_register);
-        tvGoToLogin = findViewById(R.id.reg_tv_go_to_login);
+        etUsername = findViewById(R.id.et_username);
+        etPassword = findViewById(R.id.et_password);
+        etFullName = findViewById(R.id.et_fullname);
+        etEmail = findViewById(R.id.et_email);
+        etPhone = findViewById(R.id.et_phone);
+        btnRegister = findViewById(R.id.btn_register);
+        tvGoToLogin = findViewById(R.id.tv_go_to_login);
     }
 
     private void setupEvents() {

@@ -23,7 +23,7 @@
         android:textColor="@color/text_secondary" />
 
     <EditText
-        android:id="@+id/reborn_et_username"
+        android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginBottom="16dp"
@@ -33,7 +33,7 @@
         android:padding="16dp" />
 
     <EditText
-        android:id="@+id/reborn_et_password"
+        android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginBottom="24dp"
@@ -44,7 +44,7 @@
         android:padding="16dp" />
 
     <Button
-        android:id="@+id/reborn_btn_login"
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:backgroundTint="@color/primary_color"
@@ -54,7 +54,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/reborn_tv_go_to_register"
+        android:id="@+id/tv_go_to_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

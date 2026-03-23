@@ -20,14 +20,11 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText etUsername, etPassword, etFullName, etEmail, etPhone;
     private Button btnRegister;
     private TextView tvGoToLogin;
-    private UserDao userDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
-        userDao = new UserDao(new DatabaseHelper(this));
 
         initViews();
         setupEvents();

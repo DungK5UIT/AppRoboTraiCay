@@ -38,7 +38,9 @@ public class LoginActivity extends AppCompatActivity {
 
         if (sessionManager.isLoggedIn()) {
             Toast.makeText(this, "Chào mừng quay trở lại, " + sessionManager.getUserName(), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
             finish();
+            return;
         }
 
         initViews();
@@ -88,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                             sessionManager.createLoginSession(u.getId(), u.getFullName(), u.getRole());
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
                             finish();
                             found = true;
                             break;

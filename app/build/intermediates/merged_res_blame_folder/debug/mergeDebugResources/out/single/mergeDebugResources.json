@@ -1,0 +1,54 @@
+[
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/drawable_bg_search_bar.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/drawable/bg_search_bar.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_item_gio_hang.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/item_gio_hang.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_chi_tiet_san_pham.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_chi_tiet_san_pham.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_trang_chu.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_trang_chu.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_quan_ly_san_pham.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_quan_ly_san_pham.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_item_nhom_san_pham.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/item_nhom_san_pham.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/drawable_bg_badge_accent.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/drawable/bg_badge_accent.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_item_san_pham.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/item_san_pham.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_gio_hang.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_gio_hang.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_login.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/drawable_ic_launcher.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/drawable/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_splash.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_register.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_register.xml"
+    }
+]

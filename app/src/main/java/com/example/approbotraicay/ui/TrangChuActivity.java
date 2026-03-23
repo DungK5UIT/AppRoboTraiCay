@@ -17,6 +17,8 @@ import com.example.approbotraicay.database.NhomSanPhamDao;
 import com.example.approbotraicay.database.SanPhamDao;
 import com.example.approbotraicay.api.ApiService;
 import com.example.approbotraicay.api.RetrofitClient;
+import com.example.approbotraicay.model.NhomSanPham;
+import com.example.approbotraicay.model.SanPham;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -88,22 +90,31 @@ public class TrangChuActivity extends AppCompatActivity {
         apiService.getSanPham().enqueue(new Callback<Map<String, SanPham>>() {
             @Override
             public void onResponse(Call<Map<String, SanPham>> call, Response<Map<String, SanPham>> response) {
+                android.util.Log.d("API_DEBUG", "Response Code: " + response.code());
                 if (response.isSuccessful() && response.body() != null) {
                     allProducts.clear();
                     for (Map.Entry<String, SanPham> entry : response.body().entrySet()) {
                         allProducts.add(entry.getValue());
                     }
+                    android.util.Log.d("API_DEBUG", "Loaded " + allProducts.size() + " products");
                     spAdapter = new SanPhamAdapter(allProducts, sp -> {
                         Intent intent = new Intent(TrangChuActivity.this, ChiTietSanPhamActivity.class);
                         intent.putExtra("sanpham", sp);
                         startActivity(intent);
                     });
                     rvSp.setAdapter(spAdapter);
+                } else {
+                    android.util.Log.d("API_DEBUG", "Response body is null or unsuccessful");
+                    // Fallback to local
+                    allProducts = spDao.getAll();
+                    spAdapter = new SanPhamAdapter(allProducts, sp -> {});
+                    rvSp.setAdapter(spAdapter);
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, SanPham>> call, Throwable t) {
+                android.util.Log.e("API_DEBUG", "Error: " + t.getMessage());
                 // Fallback to local if network fails
                 allProducts = spDao.getAll();
                 spAdapter = new SanPhamAdapter(allProducts, sp -> {});

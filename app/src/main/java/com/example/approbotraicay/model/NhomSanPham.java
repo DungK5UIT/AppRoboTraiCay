@@ -6,6 +6,7 @@ public class NhomSanPham implements Serializable {
     private int id;
     private String tenNhom;
     private String hinhAnh;
+    public NhomSanPham() {}
 
     public NhomSanPham(int id, String tenNhom, String hinhAnh) {
         this.id = id;

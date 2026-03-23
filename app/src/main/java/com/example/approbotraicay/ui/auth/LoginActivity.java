@@ -13,6 +13,12 @@ import com.example.approbotraicay.database.DatabaseHelper;
 import com.example.approbotraicay.database.UserDao;
 import com.example.approbotraicay.model.TaiKhoan;
 import com.example.approbotraicay.utils.SessionManager;
+import com.example.approbotraicay.api.ApiService;
+import com.example.approbotraicay.api.RetrofitClient;
+import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;
@@ -71,13 +77,34 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        TaiKhoan user = userDao.login(username, password);
-        if (user != null) {
-            sessionManager.createLoginSession(user.getId(), user.getFullName(), user.getRole());
-            Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-            finish();
-        } else {
-            Toast.makeText(this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
-        }
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService.getUsers().enqueue(new Callback<Map<String, TaiKhoan>>() {
+            @Override
+            public void onResponse(Call<Map<String, TaiKhoan>> call, Response<Map<String, TaiKhoan>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    boolean found = false;
+                    for (Map.Entry<String, TaiKhoan> entry : response.body().entrySet()) {
+                        TaiKhoan u = entry.getValue();
+                        if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                            sessionManager.createLoginSession(u.getId(), u.getFullName(), u.getRole());
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                            finish();
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        Toast.makeText(LoginActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(LoginActivity.this, "Lỗi truy xuất dữ liệu!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String, TaiKhoan>> call, Throwable t) {
+                Toast.makeText(LoginActivity.this, "Lỗi kết nối mạng!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

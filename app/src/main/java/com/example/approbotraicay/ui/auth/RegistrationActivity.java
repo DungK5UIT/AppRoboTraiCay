@@ -9,8 +9,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.approbotraicay.R;
 import com.example.approbotraicay.database.DatabaseHelper;
-import com.example.approbotraicay.database.UserDao;
 import com.example.approbotraicay.model.TaiKhoan;
+import com.example.approbotraicay.api.ApiService;
+import com.example.approbotraicay.api.RetrofitClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegistrationActivity extends AppCompatActivity {
     private EditText etUsername, etPassword, etFullName, etEmail, etPhone;
@@ -80,12 +84,22 @@ public class RegistrationActivity extends AppCompatActivity {
         newUser.setPhone(phone);
         newUser.setRole(0);
 
-        long result = userDao.insert(newUser);
-        if (result > 0) {
-            Toast.makeText(this, "Đăng ký thành công! Mời bạn đăng nhập.", Toast.LENGTH_LONG).show();
-            finish();
-        } else {
-            Toast.makeText(this, "Lỗi: Tài khoản đã tồn tại hoặc dữ liệu không hợp lệ", Toast.LENGTH_SHORT).show();
-        }
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService.postUser(newUser).enqueue(new Callback<TaiKhoan>() {
+            @Override
+            public void onResponse(Call<TaiKhoan> call, Response<TaiKhoan> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(RegistrationActivity.this, "Đăng ký thành công! Mời bạn đăng nhập.", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(RegistrationActivity.this, "Lỗi đăng ký!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TaiKhoan> call, Throwable t) {
+                Toast.makeText(RegistrationActivity.this, "Lỗi kết nối mạng!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

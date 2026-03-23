@@ -9,6 +9,7 @@ public class SanPham implements Serializable {
     private String hinhAnh;
     private String moTa;
     private int idNhom;
+    public SanPham() {}
 
     public SanPham(int id, String tenSanPham, double gia, String hinhAnh, String moTa, int idNhom) {
         this.id = id;

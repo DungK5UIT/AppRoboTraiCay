@@ -15,10 +15,14 @@ import com.example.approbotraicay.adapter.SanPhamAdapter;
 import com.example.approbotraicay.database.DatabaseHelper;
 import com.example.approbotraicay.database.NhomSanPhamDao;
 import com.example.approbotraicay.database.SanPhamDao;
-import com.example.approbotraicay.model.NhomSanPham;
-import com.example.approbotraicay.model.SanPham;
+import com.example.approbotraicay.api.ApiService;
+import com.example.approbotraicay.api.RetrofitClient;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TrangChuActivity extends AppCompatActivity {
     private RecyclerView rvNhom, rvSp;
@@ -68,6 +72,10 @@ public class TrangChuActivity extends AppCompatActivity {
     }
 
     private void loadData() {
+        // Dev A: Sync local data to Firebase for Postman testing (One-time or manual)
+        syncLocalDataToFirebase();
+
+        // Load Categories from Local (or Firebase)
         List<NhomSanPham> categories = nhomDao.getAll();
         nhomAdapter = new NhomSanPhamAdapter(categories, nhom -> {
             List<SanPham> filtered = spDao.getSanPhamByNhom(nhom.getId());
@@ -75,13 +83,47 @@ public class TrangChuActivity extends AppCompatActivity {
         });
         rvNhom.setAdapter(nhomAdapter);
 
-        allProducts = spDao.getAll();
-        spAdapter = new SanPhamAdapter(allProducts, sp -> {
-            Intent intent = new Intent(TrangChuActivity.this, ChiTietSanPhamActivity.class);
-            intent.putExtra("sanpham", sp);
-            startActivity(intent);
+        // Load Products from Firebase
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService.getSanPham().enqueue(new Callback<Map<String, SanPham>>() {
+            @Override
+            public void onResponse(Call<Map<String, SanPham>> call, Response<Map<String, SanPham>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    allProducts.clear();
+                    for (Map.Entry<String, SanPham> entry : response.body().entrySet()) {
+                        allProducts.add(entry.getValue());
+                    }
+                    spAdapter = new SanPhamAdapter(allProducts, sp -> {
+                        Intent intent = new Intent(TrangChuActivity.this, ChiTietSanPhamActivity.class);
+                        intent.putExtra("sanpham", sp);
+                        startActivity(intent);
+                    });
+                    rvSp.setAdapter(spAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String, SanPham>> call, Throwable t) {
+                // Fallback to local if network fails
+                allProducts = spDao.getAll();
+                spAdapter = new SanPhamAdapter(allProducts, sp -> {});
+                rvSp.setAdapter(spAdapter);
+            }
         });
-        rvSp.setAdapter(spAdapter);
+    }
+
+    private void syncLocalDataToFirebase() {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        List<SanPham> localSPs = spDao.getAll();
+        for (SanPham sp : localSPs) {
+            // Push each local product to Firebase for initial seeding
+            apiService.postSanPham(sp).enqueue(new Callback<SanPham>() {
+                @Override
+                public void onResponse(Call<SanPham> call, Response<SanPham> response) {}
+                @Override
+                public void onFailure(Call<SanPham> call, Throwable t) {}
+            });
+        }
     }
 
     private void filter(String text) {

@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.example.approbotraicay.R;
 import com.example.approbotraicay.model.NhomSanPham;
 import java.util.List;
@@ -35,6 +36,17 @@ public class NhomSanPhamAdapter extends RecyclerView.Adapter<NhomSanPhamAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         NhomSanPham nhom = list.get(position);
         holder.tvTenNhom.setText(nhom.getTenNhom());
+        
+        int resId = holder.itemView.getContext().getResources().getIdentifier(nhom.getHinhAnh(), "drawable", holder.itemView.getContext().getPackageName());
+        if (resId != 0) {
+            holder.ivHinhNhom.setImageResource(resId);
+        } else {
+            Glide.with(holder.itemView.getContext())
+                    .load(nhom.getHinhAnh())
+                    .placeholder(android.R.drawable.ic_menu_gallery)
+                    .into(holder.ivHinhNhom);
+        }
+
         holder.itemView.setOnClickListener(v -> listener.onItemClick(nhom));
     }
 

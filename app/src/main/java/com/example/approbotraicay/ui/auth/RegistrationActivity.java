@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.approbotraicay.R;
 import com.example.approbotraicay.database.DatabaseHelper;
+import com.example.approbotraicay.database.UserDao;
 import com.example.approbotraicay.model.TaiKhoan;
 import com.example.approbotraicay.api.ApiService;
 import com.example.approbotraicay.api.RetrofitClient;
@@ -81,22 +82,29 @@ public class RegistrationActivity extends AppCompatActivity {
         newUser.setPhone(phone);
         newUser.setRole(0);
 
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        apiService.postUser(newUser).enqueue(new Callback<TaiKhoan>() {
-            @Override
-            public void onResponse(Call<TaiKhoan> call, Response<TaiKhoan> response) {
-                if (response.isSuccessful()) {
-                    Toast.makeText(RegistrationActivity.this, "Đăng ký thành công! Mời bạn đăng nhập.", Toast.LENGTH_LONG).show();
-                    finish();
-                } else {
-                    Toast.makeText(RegistrationActivity.this, "Lỗi đăng ký!", Toast.LENGTH_SHORT).show();
-                }
-            }
+        // --- PRIMARY: SQLite Save ---
+        UserDao userDao = new UserDao(new DatabaseHelper(this));
+        long id = userDao.insert(newUser);
 
+        if (id != -1) {
+            Toast.makeText(RegistrationActivity.this, "Đăng ký thành công! Mời bạn đăng nhập.", Toast.LENGTH_LONG).show();
+            
+            // --- OPTIONAL: Background sync with Firebase ---
+            syncToFirebase(newUser);
+            
+            finish();
+        } else {
+            Toast.makeText(RegistrationActivity.this, "Lỗi đăng ký hoặc tên đăng nhập đã tồn tại!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void syncToFirebase(TaiKhoan user) {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService.postUser(user).enqueue(new Callback<TaiKhoan>() {
             @Override
-            public void onFailure(Call<TaiKhoan> call, Throwable t) {
-                Toast.makeText(RegistrationActivity.this, "Lỗi kết nối mạng!", Toast.LENGTH_SHORT).show();
-            }
+            public void onResponse(Call<TaiKhoan> call, Response<TaiKhoan> response) {}
+            @Override
+            public void onFailure(Call<TaiKhoan> call, Throwable t) {}
         });
     }
 }

@@ -79,6 +79,33 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // --- PRIMARY: SQLite Auth (Following 'Selling App' pattern) ---
+        TaiKhoan user = userDao.login(username, password);
+        if (user != null) {
+            sessionManager.createLoginSession(user.getId(), user.getFullName(), user.getRole());
+            Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
+            finish();
+
+            // --- OPTIONAL: Background sync with Firebase (Personal exercise) ---
+            syncUserToFirebase(user);
+        } else {
+            // Check Firebase (Optional fallback for the "personal exercise")
+            checkFirebaseLogin(username, password);
+        }
+    }
+
+    private void syncUserToFirebase(TaiKhoan user) {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+        apiService.postUser(user).enqueue(new Callback<TaiKhoan>() {
+            @Override
+            public void onResponse(Call<TaiKhoan> call, Response<TaiKhoan> response) {}
+            @Override
+            public void onFailure(Call<TaiKhoan> call, Throwable t) {}
+        });
+    }
+
+    private void checkFirebaseLogin(String username, String password) {
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
         apiService.getUsers().enqueue(new Callback<Map<String, TaiKhoan>>() {
             @Override
@@ -89,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                         TaiKhoan u = entry.getValue();
                         if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
                             sessionManager.createLoginSession(u.getId(), u.getFullName(), u.getRole());
-                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Đăng nhập thành công (từ Firebase)!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
                             finish();
                             found = true;
@@ -100,13 +127,13 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(LoginActivity.this, "Lỗi truy xuất dữ liệu!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, TaiKhoan>> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Lỗi kết nối mạng!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Sai tài khoản hoặc lỗi kết nối!", Toast.LENGTH_SHORT).show();
             }
         });
     }

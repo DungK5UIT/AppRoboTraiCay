@@ -19,6 +19,7 @@ import com.example.approbotraicay.api.ApiService;
 import com.example.approbotraicay.api.RetrofitClient;
 import com.example.approbotraicay.model.NhomSanPham;
 import com.example.approbotraicay.model.SanPham;
+import com.example.approbotraicay.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,8 @@ public class TrangChuActivity extends AppCompatActivity {
     private RecyclerView rvNhom, rvSp;
     private SanPhamAdapter spAdapter;
     private NhomSanPhamAdapter nhomAdapter;
+    private android.widget.ImageButton btnHomeCart;
+    private com.google.android.material.floatingactionbutton.FloatingActionButton fabCart;
     private SanPhamDao spDao;
     private NhomSanPhamDao nhomDao;
     private List<SanPham> allProducts = new ArrayList<>();
@@ -55,6 +58,8 @@ public class TrangChuActivity extends AppCompatActivity {
         rvNhom = findViewById(R.id.rv_nhom_san_pham);
         rvSp = findViewById(R.id.rv_san_pham_moi);
         etSearch = findViewById(R.id.et_search);
+        btnHomeCart = findViewById(R.id.btn_home_cart);
+        fabCart = findViewById(R.id.fab_cart);
 
         rvNhom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvSp.setLayoutManager(new GridLayoutManager(this, 2));
@@ -71,13 +76,16 @@ public class TrangChuActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {}
         });
+
+        View.OnClickListener openCart = v -> {
+            startActivity(new Intent(TrangChuActivity.this, GioHangActivity.class));
+        };
+        btnHomeCart.setOnClickListener(openCart);
+        fabCart.setOnClickListener(openCart);
     }
 
     private void loadData() {
-        // Dev A: Sync local data to Firebase for Postman testing (One-time or manual)
-        syncLocalDataToFirebase();
-
-        // Load Categories from Local (or Firebase)
+        // --- PRIMARY: Load from Local SQLite (Following 'Selling App' pattern) ---
         List<NhomSanPham> categories = nhomDao.getAll();
         nhomAdapter = new NhomSanPhamAdapter(categories, nhom -> {
             List<SanPham> filtered = spDao.getSanPhamByNhom(nhom.getId());
@@ -85,42 +93,40 @@ public class TrangChuActivity extends AppCompatActivity {
         });
         rvNhom.setAdapter(nhomAdapter);
 
-        // Load Products from Firebase
+        allProducts = spDao.getAll();
+        spAdapter = new SanPhamAdapter(allProducts, sp -> {
+            Intent intent = new Intent(TrangChuActivity.this, ChiTietSanPhamActivity.class);
+            intent.putExtra("sanpham", sp);
+            startActivity(intent);
+        });
+        rvSp.setAdapter(spAdapter);
+
+        // --- OPTIONAL: Background Update from Firebase (Personal exercise) ---
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
         apiService.getSanPham().enqueue(new Callback<Map<String, SanPham>>() {
             @Override
             public void onResponse(Call<Map<String, SanPham>> call, Response<Map<String, SanPham>> response) {
-                android.util.Log.d("API_DEBUG", "Response Code: " + response.code());
                 if (response.isSuccessful() && response.body() != null) {
-                    allProducts.clear();
+                    List<SanPham> apiProducts = new ArrayList<>();
                     for (Map.Entry<String, SanPham> entry : response.body().entrySet()) {
-                        allProducts.add(entry.getValue());
+                        apiProducts.add(entry.getValue());
                     }
-                    android.util.Log.d("API_DEBUG", "Loaded " + allProducts.size() + " products");
-                    spAdapter = new SanPhamAdapter(allProducts, sp -> {
-                        Intent intent = new Intent(TrangChuActivity.this, ChiTietSanPhamActivity.class);
-                        intent.putExtra("sanpham", sp);
-                        startActivity(intent);
-                    });
-                    rvSp.setAdapter(spAdapter);
-                } else {
-                    android.util.Log.d("API_DEBUG", "Response body is null or unsuccessful");
-                    // Fallback to local
-                    allProducts = spDao.getAll();
-                    spAdapter = new SanPhamAdapter(allProducts, sp -> {});
-                    rvSp.setAdapter(spAdapter);
+                    if (!apiProducts.isEmpty()) {
+                        allProducts = apiProducts;
+                        spAdapter.updateList(allProducts);
+                        android.util.Log.d("API_DEBUG", "Updated " + allProducts.size() + " products from Firebase");
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, SanPham>> call, Throwable t) {
-                android.util.Log.e("API_DEBUG", "Error: " + t.getMessage());
-                // Fallback to local if network fails
-                allProducts = spDao.getAll();
-                spAdapter = new SanPhamAdapter(allProducts, sp -> {});
-                rvSp.setAdapter(spAdapter);
+                android.util.Log.e("API_DEBUG", "Firebase update failed: " + t.getMessage());
             }
         });
+
+        // Dev A: Sync local data to Firebase for Postman testing (One-time or manual)
+        // syncLocalDataToFirebase();
     }
 
     private void syncLocalDataToFirebase() {

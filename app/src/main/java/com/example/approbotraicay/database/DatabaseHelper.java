@@ -6,12 +6,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "AppRobotTraiCay.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Table Names
     public static final String TABLE_TAIKHOAN = "taikhoan";
     public static final String TABLE_NHOMSANPHAM = "nhomsanpham";
     public static final String TABLE_SANPHAM = "sanpham";
+    public static final String TABLE_DONHANG = "donhang";
+    public static final String TABLE_CHITIETDONHANG = "chitietdonhang";
 
     // Common column names
     public static final String KEY_ID = "id";
@@ -35,6 +37,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_HINHSANPHAM = "hinhsanpham";
     public static final String KEY_MOTA = "mota";
     public static final String KEY_IDNHOM = "idnhom";
+
+    // DonHang Table Columns
+    public static final String KEY_TOTAL = "total";
+    public static final String KEY_DATE = "date";
+    public static final String KEY_STATUS = "status";
+
+    // ChiTietDonHang Table Columns
+    public static final String KEY_IDORDER = "idorder";
+    public static final String KEY_IDPRODUCT = "idproduct";
+    public static final String KEY_PRODUCTNAME = "productname";
+    public static final String KEY_QUANTITY = "quantity";
+    public static final String KEY_PRICE = "price";
 
     // Table Create Statements
     private static final String CREATE_TABLE_TAIKHOAN = "CREATE TABLE " + TABLE_TAIKHOAN + "("
@@ -61,6 +75,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_IDNHOM + " INTEGER,"
             + "FOREIGN KEY(" + KEY_IDNHOM + ") REFERENCES " + TABLE_NHOMSANPHAM + "(" + KEY_ID + ")" + ")";
 
+    private static final String CREATE_TABLE_DONHANG = "CREATE TABLE " + TABLE_DONHANG + "("
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_USERNAME + " TEXT,"
+            + KEY_FULLNAME + " TEXT,"
+            + KEY_PHONE + " TEXT,"
+            + KEY_ADDRESS + " TEXT,"
+            + KEY_TOTAL + " REAL,"
+            + KEY_DATE + " TEXT,"
+            + KEY_STATUS + " INTEGER DEFAULT 0" + ")";
+
+    private static final String CREATE_TABLE_CHITIETDONHANG = "CREATE TABLE " + TABLE_CHITIETDONHANG + "("
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + KEY_IDORDER + " INTEGER,"
+            + KEY_IDPRODUCT + " INTEGER,"
+            + KEY_PRODUCTNAME + " TEXT,"
+            + KEY_QUANTITY + " INTEGER,"
+            + KEY_PRICE + " REAL,"
+            + "FOREIGN KEY(" + KEY_IDORDER + ") REFERENCES " + TABLE_DONHANG + "(" + KEY_ID + ")" + ")";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -70,6 +103,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TAIKHOAN);
         db.execSQL(CREATE_TABLE_NHOMSANPHAM);
         db.execSQL(CREATE_TABLE_SANPHAM);
+        db.execSQL(CREATE_TABLE_DONHANG);
+        db.execSQL(CREATE_TABLE_CHITIETDONHANG);
 
         // Seed Sample Data (Dev A's responsibility)
         seedData(db);
@@ -95,6 +130,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAIKHOAN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NHOMSANPHAM);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SANPHAM);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DONHANG);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHITIETDONHANG);
         onCreate(db);
     }
 }

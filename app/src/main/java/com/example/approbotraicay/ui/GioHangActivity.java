@@ -1,5 +1,6 @@
 package com.example.approbotraicay.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -44,7 +45,8 @@ public class GioHangActivity extends AppCompatActivity {
         
         findViewById(R.id.btn_cart_checkout).setOnClickListener(v -> {
             if (Utils.manggiohang.size() > 0) {
-                Toast.makeText(this, "Tính năng Thanh toán đang phát triển!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ThanhToanActivity.class);
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Giỏ hàng của bạn đang trống!", Toast.LENGTH_SHORT).show();
             }

@@ -15,64 +15,29 @@ public class UserDao {
     public long insert(TaiKhoan user) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DatabaseHelper.KEY_USERNAME, user.getUsername());
-        values.put(DatabaseHelper.KEY_PASSWORD, user.getPassword());
-        values.put(DatabaseHelper.KEY_FULLNAME, user.getFullName());
-        values.put(DatabaseHelper.KEY_EMAIL, user.getEmail());
-        values.put(DatabaseHelper.KEY_PHONE, user.getPhone());
-        values.put(DatabaseHelper.KEY_ADDRESS, user.getAddress());
-        values.put(DatabaseHelper.KEY_ROLE, user.getRole());
-
-        long id = db.insert(DatabaseHelper.TABLE_TAIKHOAN, null, values);
+        values.put("tendn", user.getUsername());
+        values.put("matkhau", user.getPassword());
+        values.put("quyen", user.getRole() == 1 ? "admin" : "user");
+        // Add other fields if present in your specific banhang.db version
+        long id = db.insert("taikhoan", null, values);
         db.close();
         return id;
     }
 
-    public TaiKhoan getUserByUsername(String username) {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(DatabaseHelper.TABLE_TAIKHOAN, null,
-                DatabaseHelper.KEY_USERNAME + "=?", new String[] { username },
-                null, null, null);
-
-        if (cursor != null && cursor.moveToFirst()) {
-            TaiKhoan user = new TaiKhoan(
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_ID)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_USERNAME)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_PASSWORD)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_FULLNAME)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_EMAIL)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_PHONE)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_ADDRESS)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_ROLE)));
-            cursor.close();
-            return user;
-        }
-        if (cursor != null)
-            cursor.close();
-        return null;
-    }
-
     public TaiKhoan login(String username, String password) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(DatabaseHelper.TABLE_TAIKHOAN, null,
-                DatabaseHelper.KEY_USERNAME + "=? AND " + DatabaseHelper.KEY_PASSWORD + "=?",
-                new String[] { username, password }, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM taikhoan WHERE tendn = ? AND matkhau = ?", new String[]{username, password});
 
         if (cursor != null && cursor.moveToFirst()) {
-            TaiKhoan user = new TaiKhoan(
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_ID)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_USERNAME)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_PASSWORD)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_FULLNAME)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_EMAIL)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_PHONE)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_ADDRESS)),
-                    cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_ROLE)));
+            TaiKhoan user = new TaiKhoan();
+            user.setUsername(cursor.getString(cursor.getColumnIndexOrThrow("tendn")));
+            user.setPassword(cursor.getString(cursor.getColumnIndexOrThrow("matkhau")));
+            String role = cursor.getString(cursor.getColumnIndexOrThrow("quyen"));
+            user.setRole(role.equalsIgnoreCase("admin") ? 1 : 0);
             cursor.close();
             return user;
         }
-        if (cursor != null)
-            cursor.close();
+        if (cursor != null) cursor.close();
         return null;
     }
 }

@@ -3,135 +3,54 @@ package com.example.approbotraicay.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "AppRobotTraiCay.db";
-    private static final int DATABASE_VERSION = 3;
-
-    // Table Names
-    public static final String TABLE_TAIKHOAN = "taikhoan";
-    public static final String TABLE_NHOMSANPHAM = "nhomsanpham";
-    public static final String TABLE_SANPHAM = "sanpham";
-    public static final String TABLE_DONHANG = "donhang";
-    public static final String TABLE_CHITIETDONHANG = "chitietdonhang";
-
-    // Common column names
-    public static final String KEY_ID = "id";
-
-    // TaiKhoan Table Columns
-    public static final String KEY_USERNAME = "username";
-    public static final String KEY_PASSWORD = "password";
-    public static final String KEY_FULLNAME = "fullname";
-    public static final String KEY_EMAIL = "email";
-    public static final String KEY_PHONE = "phone";
-    public static final String KEY_ADDRESS = "address";
-    public static final String KEY_ROLE = "role";
-
-    // NhomSanPham Table Columns
-    public static final String KEY_TENNHOM = "tennhom";
-    public static final String KEY_HINHNHOM = "hinhnhom";
-
-    // SanPham Table Columns
-    public static final String KEY_TENSANPHAM = "tensanpham";
-    public static final String KEY_GIA = "gia";
-    public static final String KEY_HINHSANPHAM = "hinhsanpham";
-    public static final String KEY_MOTA = "mota";
-    public static final String KEY_IDNHOM = "idnhom";
-
-    // DonHang Table Columns
-    public static final String KEY_TOTAL = "total";
-    public static final String KEY_DATE = "date";
-    public static final String KEY_STATUS = "status";
-
-    // ChiTietDonHang Table Columns
-    public static final String KEY_IDORDER = "idorder";
-    public static final String KEY_IDPRODUCT = "idproduct";
-    public static final String KEY_PRODUCTNAME = "productname";
-    public static final String KEY_QUANTITY = "quantity";
-    public static final String KEY_PRICE = "price";
-
-    // Table Create Statements
-    private static final String CREATE_TABLE_TAIKHOAN = "CREATE TABLE " + TABLE_TAIKHOAN + "("
-            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_USERNAME + " TEXT UNIQUE,"
-            + KEY_PASSWORD + " TEXT,"
-            + KEY_FULLNAME + " TEXT,"
-            + KEY_EMAIL + " TEXT,"
-            + KEY_PHONE + " TEXT,"
-            + KEY_ADDRESS + " TEXT,"
-            + KEY_ROLE + " INTEGER DEFAULT 0" + ")";
-
-    private static final String CREATE_TABLE_NHOMSANPHAM = "CREATE TABLE " + TABLE_NHOMSANPHAM + "("
-            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_TENNHOM + " TEXT,"
-            + KEY_HINHNHOM + " TEXT" + ")";
-
-    private static final String CREATE_TABLE_SANPHAM = "CREATE TABLE " + TABLE_SANPHAM + "("
-            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_TENSANPHAM + " TEXT,"
-            + KEY_GIA + " REAL,"
-            + KEY_HINHSANPHAM + " TEXT,"
-            + KEY_MOTA + " TEXT,"
-            + KEY_IDNHOM + " INTEGER,"
-            + "FOREIGN KEY(" + KEY_IDNHOM + ") REFERENCES " + TABLE_NHOMSANPHAM + "(" + KEY_ID + ")" + ")";
-
-    private static final String CREATE_TABLE_DONHANG = "CREATE TABLE " + TABLE_DONHANG + "("
-            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_USERNAME + " TEXT,"
-            + KEY_FULLNAME + " TEXT,"
-            + KEY_PHONE + " TEXT,"
-            + KEY_ADDRESS + " TEXT,"
-            + KEY_TOTAL + " REAL,"
-            + KEY_DATE + " TEXT,"
-            + KEY_STATUS + " INTEGER DEFAULT 0" + ")";
-
-    private static final String CREATE_TABLE_CHITIETDONHANG = "CREATE TABLE " + TABLE_CHITIETDONHANG + "("
-            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + KEY_IDORDER + " INTEGER,"
-            + KEY_IDPRODUCT + " INTEGER,"
-            + KEY_PRODUCTNAME + " TEXT,"
-            + KEY_QUANTITY + " INTEGER,"
-            + KEY_PRICE + " REAL,"
-            + "FOREIGN KEY(" + KEY_IDORDER + ") REFERENCES " + TABLE_DONHANG + "(" + KEY_ID + ")" + ")";
+    private static final String DATABASE_NAME = "banhang.db";
+    private static final int DATABASE_VERSION = 1;
+    private final Context context;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
+        copyDatabase();
+    }
+
+    private void copyDatabase() {
+        try {
+            File dbPath = context.getDatabasePath(DATABASE_NAME);
+            if (!dbPath.exists()) {
+                Log.d("DatabaseHelper", "Copying database from assets...");
+                InputStream inputStream = context.getAssets().open(DATABASE_NAME);
+                OutputStream outputStream = new FileOutputStream(dbPath);
+
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = inputStream.read(buffer)) > 0) {
+                    outputStream.write(buffer, 0, length);
+                }
+
+                outputStream.flush();
+                outputStream.close();
+                inputStream.close();
+                Log.d("DatabaseHelper", "Database copied successfully.");
+            }
+        } catch (Exception e) {
+            Log.e("DatabaseHelper", "Error copying database: " + e.getMessage());
+        }
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_TAIKHOAN);
-        db.execSQL(CREATE_TABLE_NHOMSANPHAM);
-        db.execSQL(CREATE_TABLE_SANPHAM);
-        db.execSQL(CREATE_TABLE_DONHANG);
-        db.execSQL(CREATE_TABLE_CHITIETDONHANG);
-
-        // Seed Sample Data (Dev A's responsibility)
-        seedData(db);
-    }
-
-    private void seedData(SQLiteDatabase db) {
-        // Insert Categories
-        db.execSQL("INSERT INTO " + TABLE_NHOMSANPHAM + " (" + KEY_TENNHOM + ", " + KEY_HINHNHOM + ") VALUES ('Trái Cây Nội', 'ic_fruit_local')");
-        db.execSQL("INSERT INTO " + TABLE_NHOMSANPHAM + " (" + KEY_TENNHOM + ", " + KEY_HINHNHOM + ") VALUES ('Trái Cây Nhập', 'ic_fruit_import')");
-        db.execSQL("INSERT INTO " + TABLE_NHOMSANPHAM + " (" + KEY_TENNHOM + ", " + KEY_HINHNHOM + ") VALUES ('Combo Quà Tặng', 'ic_fruit_combo')");
-
-        // Insert Sample Products
-        db.execSQL("INSERT INTO " + TABLE_SANPHAM + " (" + KEY_TENSANPHAM + ", " + KEY_GIA + ", " + KEY_MOTA + ", " + KEY_IDNHOM + ") " +
-                "VALUES ('Táo Envy Mỹ', 150000, 'Táo Envy nhập khẩu từ Mỹ, giòn ngọt.', 2)");
-        db.execSQL("INSERT INTO " + TABLE_SANPHAM + " (" + KEY_TENSANPHAM + ", " + KEY_GIA + ", " + KEY_MOTA + ", " + KEY_IDNHOM + ") " +
-                "VALUES ('Xoài Cát Hòa Lộc', 85000, 'Xoài cát đặc sản Tiền Giang.', 1)");
-        db.execSQL("INSERT INTO " + TABLE_SANPHAM + " (" + KEY_TENSANPHAM + ", " + KEY_GIA + ", " + KEY_MOTA + ", " + KEY_IDNHOM + ") " +
-                "VALUES ('Nho Mẫu Đơn', 450000, 'Nho mẫu đơn Hàn Quốc cao cấp.', 2)");
+        // Database is copied from assets, so we don't need to create tables
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAIKHOAN);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NHOMSANPHAM);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SANPHAM);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_DONHANG);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CHITIETDONHANG);
-        onCreate(db);
+        // Handle upgrade if needed
     }
 }

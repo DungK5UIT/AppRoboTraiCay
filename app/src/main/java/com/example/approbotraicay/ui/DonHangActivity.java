@@ -1,5 +1,6 @@
 package com.example.approbotraicay.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -49,7 +50,7 @@ public class DonHangActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         donHangDao = new DonHangDao(new DatabaseHelper(this));
 
-        List<DonHang> list = donHangDao.getOrdersByUsername(sessionManager.getUserName());
+        List<DonHang> list = donHangDao.getDonHangByUser(sessionManager.getUserName());
         if (list.isEmpty()) {
             llEmpty.setVisibility(View.VISIBLE);
             rvDonHang.setVisibility(View.GONE);

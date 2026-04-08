@@ -46,7 +46,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
         holder.tvGiaSp.setText(decimalFormat.format(sp.getGia()) + "đ");
 
         Glide.with(holder.itemView.getContext())
-                .load(sp.getHinhAnh())
+                .load(sp.getHinhAnhBlob())
                 .placeholder(android.R.drawable.ic_menu_gallery)
                 .into(holder.ivHinhSp);
 
@@ -60,6 +60,9 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     private void themVaoGioHang(SanPham sanPham, android.content.Context context) {
         if (sanPham == null) return;
         boolean exists = false;
+        if (Utils.manggiohang == null) {
+            Utils.manggiohang = new java.util.ArrayList<>();
+        }
         for (int i = 0; i < Utils.manggiohang.size(); i++) {
             if (Utils.manggiohang.get(i).getIdsp() == sanPham.getId()) {
                 Utils.manggiohang.get(i).setSoluong(Utils.manggiohang.get(i).getSoluong() + 1);
@@ -73,7 +76,7 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
             gioHang.setSoluong(1);
             gioHang.setIdsp(sanPham.getId());
             gioHang.setTensp(sanPham.getTenSanPham());
-            gioHang.setHinhsp(sanPham.getHinhAnh());
+            gioHang.setHinhAnhBlob(sanPham.getHinhAnhBlob());
             Utils.manggiohang.add(gioHang);
         }
         Toast.makeText(context, "Đã thêm " + sanPham.getTenSanPham() + " vào giỏ hàng", Toast.LENGTH_SHORT).show();

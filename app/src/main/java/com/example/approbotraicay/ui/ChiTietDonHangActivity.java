@@ -57,7 +57,7 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
             tvTongTien.setText(decimalFormat.format(dh.getTotal()) + "đ");
 
             ChiTietDonHangDao dao = new ChiTietDonHangDao(new DatabaseHelper(this));
-            List<ChiTietDonHang> details = dao.getDetailsByOrderId(dh.getId());
+            List<ChiTietDonHang> details = dao.getByOrderId(dh.getId());
             rvChiTiet.setAdapter(new ChiTietDonHangAdapter(details));
         }
     }

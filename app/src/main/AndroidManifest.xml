@@ -10,7 +10,7 @@
         android:label="Robot Trai Cây"
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.Approbotraicay.NoActionBar">
 
         <activity
             android:name=".ui.auth.SplashActivity"
@@ -27,6 +27,9 @@
         <activity android:name=".ui.GioHangActivity" />
         <activity android:name=".ui.ChiTietSanPhamActivity" />
         <activity android:name=".ui.admin.QuanLySanPhamActivity" />
+        <activity android:name=".ui.ThanhToanActivity" />
+        <activity android:name=".ui.DonHangActivity" />
+        <activity android:name=".ui.ChiTietDonHangActivity" />
 
     </application>
 

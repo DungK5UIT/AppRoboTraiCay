@@ -58,44 +58,37 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
             tvGia.setText(decimalFormat.format(sanPham.getGia()) + "đ");
             tvMoTa.setText(sanPham.getMoTa());
-            Glide.with(this).load(sanPham.getHinhAnh()).into(ivHinh);
+            Glide.with(this).load(sanPham.getHinhAnhBlob()).into(ivHinh);
         }
     }
 
     private void themVaoGioHang() {
         if (sanPham == null) return;
         
-        if (Utils.manggiohang.size() > 0) {
-            boolean exists = false;
-            for (int i = 0; i < Utils.manggiohang.size(); i++) {
-                if (Utils.manggiohang.get(i).getIdsp() == sanPham.getId()) {
-                    Utils.manggiohang.get(i).setSoluong(Utils.manggiohang.get(i).getSoluong() + 1);
-                    exists = true;
-                }
+        if (Utils.manggiohang == null) {
+            Utils.manggiohang = new java.util.ArrayList<>();
+        }
+
+        boolean exists = false;
+        for (int i = 0; i < Utils.manggiohang.size(); i++) {
+            if (Utils.manggiohang.get(i).getIdsp() == sanPham.getId()) {
+                Utils.manggiohang.get(i).setSoluong(Utils.manggiohang.get(i).getSoluong() + 1);
+                exists = true;
+                break;
             }
-            if (!exists) {
-                int sl = 1;
-                GioHang gioHang = new GioHang();
-                gioHang.setGiasp((long) sanPham.getGia());
-                gioHang.setSoluong(sl);
-                gioHang.setIdsp(sanPham.getId());
-                gioHang.setTensp(sanPham.getTenSanPham());
-                gioHang.setHinhsp(sanPham.getHinhAnh());
-                Utils.manggiohang.add(gioHang);
-            }
-        } else {
-            int sl = 1;
+        }
+
+        if (!exists) {
             GioHang gioHang = new GioHang();
             gioHang.setGiasp((long) sanPham.getGia());
-            gioHang.setSoluong(sl);
+            gioHang.setSoluong(1);
             gioHang.setIdsp(sanPham.getId());
             gioHang.setTensp(sanPham.getTenSanPham());
-            gioHang.setHinhsp(sanPham.getHinhAnh());
+            gioHang.setHinhAnhBlob(sanPham.getHinhAnhBlob());
             Utils.manggiohang.add(gioHang);
         }
         
         Toast.makeText(this, "Đã thêm vào giỏ hàng", Toast.LENGTH_SHORT).show();
-        // Optional: Open Cart
         startActivity(new Intent(this, GioHangActivity.class));
     }
 }

@@ -14,8 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.Approbotraicay.NoActionBar">
+    <style name="Theme.Approbotraicay.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <!-- Thêm các màu tùy chỉnh vào NoActionBar theme -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_color</item>
+        <item name="colorSecondary">@color/secondary_color</item>
+        <item name="android:statusBarColor">#6200EE</item>
     </style>
 </resources>

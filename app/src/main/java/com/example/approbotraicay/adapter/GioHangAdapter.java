@@ -49,7 +49,7 @@ public class GioHangAdapter extends RecyclerView.Adapter<GioHangAdapter.MyViewHo
         holder.tvSoLuong.setText(String.valueOf(gioHang.getSoluong()));
         
         Glide.with(context)
-                .load(gioHang.getHinhsp())
+                .load(gioHang.getHinhAnhBlob())
                 .placeholder(android.R.drawable.ic_menu_gallery)
                 .into(holder.ivHinh);
 

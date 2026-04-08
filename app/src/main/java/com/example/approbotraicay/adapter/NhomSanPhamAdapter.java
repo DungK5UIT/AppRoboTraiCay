@@ -37,15 +37,10 @@ public class NhomSanPhamAdapter extends RecyclerView.Adapter<NhomSanPhamAdapter.
         NhomSanPham nhom = list.get(position);
         holder.tvTenNhom.setText(nhom.getTenNhom());
         
-        int resId = holder.itemView.getContext().getResources().getIdentifier(nhom.getHinhAnh(), "drawable", holder.itemView.getContext().getPackageName());
-        if (resId != 0) {
-            holder.ivHinhNhom.setImageResource(resId);
-        } else {
-            Glide.with(holder.itemView.getContext())
-                    .load(nhom.getHinhAnh())
-                    .placeholder(android.R.drawable.ic_menu_gallery)
-                    .into(holder.ivHinhNhom);
-        }
+        Glide.with(holder.itemView.getContext())
+                .load(nhom.getHinhAnhBlob())
+                .placeholder(android.R.drawable.ic_menu_gallery)
+                .into(holder.ivHinhNhom);
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(nhom));
     }

@@ -2,6 +2,7 @@ package com.example.approbotraicay.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -89,7 +90,7 @@ public class TrangChuActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        // --- PRIMARY: Load from Local SQLite (Following 'Selling App' pattern) ---
+        // --- PRIMARY: Load from Local SQLite (Original AppBanHang data) ---
         List<NhomSanPham> categories = nhomDao.getAll();
         nhomAdapter = new NhomSanPhamAdapter(categories, nhom -> {
             List<SanPham> filtered = spDao.getSanPhamByNhom(nhom.getId());
@@ -105,46 +106,13 @@ public class TrangChuActivity extends AppCompatActivity {
         });
         rvSp.setAdapter(spAdapter);
 
-        // --- OPTIONAL: Background Update from Firebase (Personal exercise) ---
+        // Firebase background update disabled to prioritize original project juice data
+        /*
         ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
         apiService.getSanPham().enqueue(new Callback<Map<String, SanPham>>() {
-            @Override
-            public void onResponse(Call<Map<String, SanPham>> call, Response<Map<String, SanPham>> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    List<SanPham> apiProducts = new ArrayList<>();
-                    for (Map.Entry<String, SanPham> entry : response.body().entrySet()) {
-                        apiProducts.add(entry.getValue());
-                    }
-                    if (!apiProducts.isEmpty()) {
-                        allProducts = apiProducts;
-                        spAdapter.updateList(allProducts);
-                        android.util.Log.d("API_DEBUG", "Updated " + allProducts.size() + " products from Firebase");
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Map<String, SanPham>> call, Throwable t) {
-                android.util.Log.e("API_DEBUG", "Firebase update failed: " + t.getMessage());
-            }
+            ...
         });
-
-        // Dev A: Sync local data to Firebase for Postman testing (One-time or manual)
-        // syncLocalDataToFirebase();
-    }
-
-    private void syncLocalDataToFirebase() {
-        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-        List<SanPham> localSPs = spDao.getAll();
-        for (SanPham sp : localSPs) {
-            // Push each local product to Firebase for initial seeding
-            apiService.postSanPham(sp).enqueue(new Callback<SanPham>() {
-                @Override
-                public void onResponse(Call<SanPham> call, Response<SanPham> response) {}
-                @Override
-                public void onFailure(Call<SanPham> call, Throwable t) {}
-            });
-        }
+        */
     }
 
     private void filter(String text) {

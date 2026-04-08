@@ -26,7 +26,7 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        android:theme="@style/Theme.Approbotraicay.NoActionBar" >
         <activity
             android:name="com.example.approbotraicay.ui.auth.SplashActivity"
             android:exported="true" >
@@ -39,8 +39,12 @@
         <activity android:name="com.example.approbotraicay.ui.auth.LoginActivity" />
         <activity android:name="com.example.approbotraicay.ui.auth.RegistrationActivity" />
         <activity android:name="com.example.approbotraicay.ui.TrangChuActivity" />
+        <activity android:name="com.example.approbotraicay.ui.GioHangActivity" />
         <activity android:name="com.example.approbotraicay.ui.ChiTietSanPhamActivity" />
         <activity android:name="com.example.approbotraicay.ui.admin.QuanLySanPhamActivity" />
+        <activity android:name="com.example.approbotraicay.ui.ThanhToanActivity" />
+        <activity android:name="com.example.approbotraicay.ui.DonHangActivity" />
+        <activity android:name="com.example.approbotraicay.ui.ChiTietDonHangActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

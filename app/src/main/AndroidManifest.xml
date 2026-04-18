@@ -30,6 +30,7 @@
         <activity android:name=".ui.ThanhToanActivity" />
         <activity android:name=".ui.DonHangActivity" />
         <activity android:name=".ui.ChiTietDonHangActivity" />
+        <activity android:name=".ui.ProfileActivity" />
 
     </application>
 

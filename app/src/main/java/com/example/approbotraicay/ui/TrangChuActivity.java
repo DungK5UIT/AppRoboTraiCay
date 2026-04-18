@@ -32,7 +32,7 @@ public class TrangChuActivity extends AppCompatActivity {
     private RecyclerView rvNhom, rvSp;
     private SanPhamAdapter spAdapter;
     private NhomSanPhamAdapter nhomAdapter;
-    private android.widget.ImageButton btnHomeCart, btnHomeHistory;
+    private android.widget.ImageButton btnHomeCart, btnHomeHistory, btnHomeProfile;
     private com.google.android.material.floatingactionbutton.FloatingActionButton fabCart;
     private SanPhamDao spDao;
     private NhomSanPhamDao nhomDao;
@@ -61,6 +61,7 @@ public class TrangChuActivity extends AppCompatActivity {
         etSearch = findViewById(R.id.et_search);
         btnHomeCart = findViewById(R.id.btn_home_cart);
         btnHomeHistory = findViewById(R.id.btn_home_history);
+        btnHomeProfile = findViewById(R.id.btn_home_profile);
         fabCart = findViewById(R.id.fab_cart);
 
         rvNhom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -86,6 +87,9 @@ public class TrangChuActivity extends AppCompatActivity {
         fabCart.setOnClickListener(openCart);
         btnHomeHistory.setOnClickListener(v -> {
             startActivity(new Intent(TrangChuActivity.this, DonHangActivity.class));
+        });
+        btnHomeProfile.setOnClickListener(v -> {
+            startActivity(new Intent(TrangChuActivity.this, ProfileActivity.class));
         });
     }
 

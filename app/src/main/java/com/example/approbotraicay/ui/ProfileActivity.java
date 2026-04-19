@@ -1,20 +1,22 @@
 package com.example.approbotraicay.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.approbotraicay.R;
+import com.example.approbotraicay.ui.auth.LoginActivity;
+import com.example.approbotraicay.database.DatabaseHelper;
+import com.example.approbotraicay.database.UserDao;
+import com.example.approbotraicay.model.TaiKhoan;
+import com.example.approbotraicay.utils.SessionManager;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
-/**
- * ProfileActivity - Created by Dev C (UI/Layout)
- * This activity handles the user profile interface.
- * Functionality (Update, Logout, Firebase sync) will be implemented by Dev A/B.
- */
 public class ProfileActivity extends AppCompatActivity {
     
     private TextView tvProfileUsername;
@@ -22,13 +24,24 @@ public class ProfileActivity extends AppCompatActivity {
     private TextInputEditText etFullName, etPhone, etEmail, etAddress;
     private MaterialButton btnUpdate, btnChangePass, btnLogout;
     private MaterialToolbar toolbar;
+    
+    private SessionManager sessionManager;
+    private UserDao userDao;
+    private TaiKhoan currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        initData();
         initView();
+        loadUserProfile();
+    }
+
+    private void initData() {
+        sessionManager = new SessionManager(this);
+        userDao = new UserDao(new DatabaseHelper(this));
     }
 
     private void initView() {
@@ -50,17 +63,98 @@ public class ProfileActivity extends AppCompatActivity {
         }
         toolbar.setNavigationOnClickListener(v -> finish());
 
-        // UI Interactions (Placeholders for Dev A/B)
-        btnUpdate.setOnClickListener(v -> {
-            Toast.makeText(this, "Tính năng Cập nhật (Hành động của Dev A)", Toast.LENGTH_SHORT).show();
-        });
+        // Implement Logic - Dev A
+        btnUpdate.setOnClickListener(v -> updateProfile());
         
-        btnChangePass.setOnClickListener(v -> {
-            Toast.makeText(this, "Tính năng Đổi mật khẩu (Hành động của Dev A)", Toast.LENGTH_SHORT).show();
-        });
+        btnLogout.setOnClickListener(v -> performLogout());
+        
+        btnChangePass.setOnClickListener(v -> showChangePasswordDialog());
+    }
 
-        btnLogout.setOnClickListener(v -> {
-            Toast.makeText(this, "Tính năng Đăng xuất (Hành động của Dev B)", Toast.LENGTH_SHORT).show();
-        });
+    private void showChangePasswordDialog() {
+        android.view.View view = getLayoutInflater().inflate(R.layout.dialog_change_password, null);
+        TextInputEditText etOldPass = view.findViewById(R.id.et_old_password);
+        TextInputEditText etNewPass = view.findViewById(R.id.et_new_password);
+        TextInputEditText etConfirmPass = view.findViewById(R.id.et_confirm_password);
+
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Đổi mật khẩu")
+                .setView(view)
+                .setPositiveButton("Cập nhật", (dialog, which) -> {
+                    String oldPass = etOldPass.getText().toString();
+                    String newPass = etNewPass.getText().toString();
+                    String confirmPass = etConfirmPass.getText().toString();
+
+                    if (!oldPass.equals(currentUser.getPassword())) {
+                        Toast.makeText(this, "Mật khẩu cũ không đúng!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (newPass.length() < 6) {
+                        Toast.makeText(this, "Mật khẩu mới phải từ 6 ký tự!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (!newPass.equals(confirmPass)) {
+                        Toast.makeText(this, "Mật khẩu xác nhận không khớp!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    int result = userDao.updatePassword(currentUser.getUsername(), newPass);
+                    if (result > 0) {
+                        currentUser.setPassword(newPass);
+                        Toast.makeText(this, "Đổi mật khẩu thành công!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(this, "Đổi mật khẩu thất bại!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Hủy", null)
+                .show();
+    }
+
+    private void loadUserProfile() {
+        String username = sessionManager.getUserName();
+        currentUser = userDao.getUserByUsername(username);
+
+        if (currentUser != null) {
+            tvProfileUsername.setText(currentUser.getUsername());
+            etFullName.setText(currentUser.getFullName());
+            etPhone.setText(currentUser.getPhone());
+            etEmail.setText(currentUser.getEmail());
+            etAddress.setText(currentUser.getAddress());
+        } else {
+            Toast.makeText(this, "Không tìm thấy thông tin người dùng!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    }
+
+    private void updateProfile() {
+        String name = etFullName.getText().toString();
+        String phone = etPhone.getText().toString();
+        String email = etEmail.getText().toString();
+        String address = etAddress.getText().toString();
+
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "Vui lòng nhập họ tên!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        currentUser.setFullName(name);
+        currentUser.setPhone(phone);
+        currentUser.setEmail(email);
+        currentUser.setAddress(address);
+
+        int result = userDao.updateProfile(currentUser);
+        if (result > 0) {
+            Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Cập nhật thất bại!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void performLogout() {
+        sessionManager.logout();
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }

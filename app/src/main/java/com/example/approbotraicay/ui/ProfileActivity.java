@@ -69,6 +69,25 @@ public class ProfileActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(v -> performLogout());
         
         btnChangePass.setOnClickListener(v -> showChangePasswordDialog());
+
+        // Implement Logic - Dev B (Cloud Sync & Image)
+        ivAvatar.setOnClickListener(v -> pickImage());
+    }
+
+    private void pickImage() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, 101);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 101 && resultCode == RESULT_OK && data != null) {
+            android.net.Uri imageUri = data.getData();
+            ivAvatar.setImageURI(imageUri);
+            Toast.makeText(this, "Đã chọn ảnh đại diện!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void showChangePasswordDialog() {
@@ -144,10 +163,30 @@ public class ProfileActivity extends AppCompatActivity {
 
         int result = userDao.updateProfile(currentUser);
         if (result > 0) {
-            Toast.makeText(this, "Cập nhật thành công!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Cập nhật local thành công! Đang đồng bộ...", Toast.LENGTH_SHORT).show();
+            syncProfileToCloud();
         } else {
             Toast.makeText(this, "Cập nhật thất bại!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void syncProfileToCloud() {
+        com.example.approbotraicay.api.ApiService apiService = com.example.approbotraicay.api.RetrofitClient.getClient().create(com.example.approbotraicay.api.ApiService.class);
+        apiService.updateUser(currentUser.getUsername(), currentUser).enqueue(new retrofit2.Callback<TaiKhoan>() {
+            @Override
+            public void onResponse(retrofit2.Call<TaiKhoan> call, retrofit2.Response<TaiKhoan> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(ProfileActivity.this, "Đồng bộ Cloud thành công!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ProfileActivity.this, "Đồng bộ Cloud thất bại!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<TaiKhoan> call, Throwable t) {
+                Toast.makeText(ProfileActivity.this, "Lỗi kết nối Cloud: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void performLogout() {

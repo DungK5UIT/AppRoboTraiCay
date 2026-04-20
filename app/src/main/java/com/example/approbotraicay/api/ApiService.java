@@ -29,4 +29,7 @@ public interface ApiService {
 
     @POST("taikhoan.json")
     Call<TaiKhoan> postUser(@Body TaiKhoan user);
+
+    @PUT("taikhoan/{username}.json")
+    Call<TaiKhoan> updateUser(@Path("username") String username, @Body TaiKhoan user);
 }

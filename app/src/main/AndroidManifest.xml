@@ -32,6 +32,7 @@
         <activity android:name=".ui.ChiTietDonHangActivity" />
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.admin.AdminDonHangActivity" />
+        <activity android:name=".ui.YeuThichActivity" />
 
     </application>
 

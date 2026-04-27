@@ -31,20 +31,22 @@ public class ChiTietDonHangDao {
         List<ChiTietDonHang> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         
-        // Join with sanpham to get product name if needed in the UI, or just mapping
-        String sql = "SELECT * FROM Chitietdonhang WHERE id_dathang = ?";
+        // Join with sanpham to get product name and image path/blob
+        String sql = "SELECT ct.*, sp.tensp, sp.anh FROM Chitietdonhang ct " +
+                     "INNER JOIN sanpham sp ON ct.masp = sp.masp " +
+                     "WHERE ct.id_dathang = ?";
         Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(orderId)});
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
-                ChiTietDonHang ctdh = new ChiTietDonHang(
-                        cursor.getInt(cursor.getColumnIndexOrThrow("id_chitiet")),
-                        cursor.getInt(cursor.getColumnIndexOrThrow("id_dathang")),
-                        cursor.getInt(cursor.getColumnIndexOrThrow("masp")),
-                        "Sản phẩm #" + cursor.getInt(cursor.getColumnIndexOrThrow("masp")), // Temp name
-                        cursor.getInt(cursor.getColumnIndexOrThrow("soluong")),
-                        cursor.getDouble(cursor.getColumnIndexOrThrow("dongia"))
-                );
+                ChiTietDonHang ctdh = new ChiTietDonHang();
+                ctdh.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id_chitiet")));
+                ctdh.setOrderId(cursor.getInt(cursor.getColumnIndexOrThrow("id_dathang")));
+                ctdh.setProductId(cursor.getInt(cursor.getColumnIndexOrThrow("masp")));
+                ctdh.setProductName(cursor.getString(cursor.getColumnIndexOrThrow("tensp")));
+                ctdh.setQuantity(cursor.getInt(cursor.getColumnIndexOrThrow("soluong")));
+                ctdh.setPrice(cursor.getDouble(cursor.getColumnIndexOrThrow("dongia")));
+                ctdh.setImageBlob(cursor.getBlob(cursor.getColumnIndexOrThrow("anh")));
                 list.add(ctdh);
             } while (cursor.moveToNext());
             cursor.close();

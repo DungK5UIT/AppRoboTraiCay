@@ -45,6 +45,7 @@
         <activity android:name="com.example.approbotraicay.ui.ThanhToanActivity" />
         <activity android:name="com.example.approbotraicay.ui.DonHangActivity" />
         <activity android:name="com.example.approbotraicay.ui.ChiTietDonHangActivity" />
+        <activity android:name="com.example.approbotraicay.ui.ProfileActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

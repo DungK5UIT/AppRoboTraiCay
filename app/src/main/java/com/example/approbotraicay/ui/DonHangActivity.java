@@ -44,6 +44,7 @@ public class DonHangActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> finish());
 
         rvDonHang.setLayoutManager(new LinearLayoutManager(this));
+        rvDonHang.setAdapter(new DonHangAdapter(new java.util.ArrayList<>(), null));
     }
 
     private void initData() {

@@ -140,8 +140,9 @@ public class ProfileActivity extends AppCompatActivity {
             etEmail.setText(currentUser.getEmail());
             etAddress.setText(currentUser.getAddress());
         } else {
-            Toast.makeText(this, "Không tìm thấy thông tin người dùng!", Toast.LENGTH_SHORT).show();
-            finish();
+            // Hiển thị thông báo nếu không tìm thấy User trong DB nhưng không đóng màn hình
+            tvProfileUsername.setText(username + " (Chưa có dữ liệu)");
+            Toast.makeText(this, "Không tìm thấy User '" + username + "' trong SQLite bản cũ!", Toast.LENGTH_LONG).show();
         }
     }
 

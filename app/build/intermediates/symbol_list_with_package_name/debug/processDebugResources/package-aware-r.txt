@@ -2910,6 +2910,7 @@ drawable abc_vector_test
 drawable avd_hide_password
 drawable avd_show_password
 drawable bg_badge_accent
+drawable bg_profile_corners
 drawable bg_search_bar
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3117,7 +3118,11 @@ id btn_cart_remove
 id btn_detail_add_to_cart
 id btn_home_cart
 id btn_home_history
+id btn_home_profile
 id btn_login
+id btn_profile_change_pass
+id btn_profile_logout
+id btn_profile_update
 id btn_register
 id btn_thanh_toan_xacnhan
 id btn_them_san_pham
@@ -3202,10 +3207,17 @@ id end
 id endToStart
 id enterAlways
 id enterAlwaysCollapsed
+id et_confirm_password
 id et_email
 id et_fullname
+id et_new_password
+id et_old_password
 id et_password
 id et_phone
+id et_profile_address
+id et_profile_email
+id et_profile_fullname
+id et_profile_phone
 id et_search
 id et_thanh_toan_diachi
 id et_thanh_toan_sdt
@@ -3265,6 +3277,7 @@ id iv_cart_hinh
 id iv_detail_hinh
 id iv_hinh_nhom
 id iv_hinh_san_pham
+id iv_profile_avatar
 id jumpToEnd
 id jumpToStart
 id labeled
@@ -3512,6 +3525,7 @@ id toolbar_cart
 id toolbar_chi_tiet_don_hang
 id toolbar_detail
 id toolbar_don_hang
+id toolbar_profile
 id toolbar_thanh_toan
 id top
 id topPanel
@@ -3545,6 +3559,7 @@ id tv_item_don_hang_id
 id tv_item_don_hang_ngay
 id tv_item_don_hang_tongtien
 id tv_item_don_hang_trangthai
+id tv_profile_username
 id tv_ten_nhom
 id tv_ten_san_pham
 id tv_thanh_toan_tamtinh
@@ -3690,6 +3705,7 @@ layout activity_chi_tiet_san_pham
 layout activity_don_hang
 layout activity_gio_hang
 layout activity_login
+layout activity_profile
 layout activity_quan_ly_san_pham
 layout activity_register
 layout activity_splash
@@ -3711,6 +3727,7 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
+layout dialog_change_password
 layout item_chi_tiet_don_hang
 layout item_don_hang
 layout item_gio_hang
@@ -4221,6 +4238,7 @@ style Base_Widget_MaterialComponents_TextView
 style CardView
 style CardView_Dark
 style CardView_Light
+style CircleImage
 style MaterialAlertDialog_Material3
 style MaterialAlertDialog_Material3_Animation
 style MaterialAlertDialog_Material3_Body_Text

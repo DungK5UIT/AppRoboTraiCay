@@ -64,6 +64,12 @@ public class TrangChuActivity extends AppCompatActivity {
         btnHomeProfile = findViewById(R.id.btn_home_profile);
         fabCart = findViewById(R.id.fab_cart);
 
+        // Initialize adapters with empty lists immediately to avoid "No adapter attached" warning
+        nhomAdapter = new NhomSanPhamAdapter(new ArrayList<>(), null);
+        rvNhom.setAdapter(nhomAdapter);
+        spAdapter = new SanPhamAdapter(new ArrayList<>(), null);
+        rvSp.setAdapter(spAdapter);
+
         rvNhom.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         rvSp.setLayoutManager(new GridLayoutManager(this, 2));
 

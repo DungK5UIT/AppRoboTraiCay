@@ -31,6 +31,7 @@
         <activity android:name=".ui.DonHangActivity" />
         <activity android:name=".ui.ChiTietDonHangActivity" />
         <activity android:name=".ui.ProfileActivity" />
+        <activity android:name=".ui.admin.AdminDonHangActivity" />
 
     </application>
 

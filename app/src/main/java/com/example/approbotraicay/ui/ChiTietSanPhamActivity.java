@@ -21,14 +21,19 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
     private TextView tvTen, tvGia, tvMoTa;
     private ImageView ivHinh;
     private Button btnAddToCart;
+    private com.example.approbotraicay.database.YeuthichDao yeuthichDao;
+    private com.google.android.material.floatingactionbutton.FloatingActionButton fabFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chi_tiet_san_pham);
 
+        yeuthichDao = new com.example.approbotraicay.database.YeuthichDao(new com.example.approbotraicay.database.DatabaseHelper(this));
+        
         initView();
         getIntentData();
+        updateFavoriteIcon();
     }
 
     private void initView() {
@@ -37,10 +42,25 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
         tvMoTa = findViewById(R.id.tv_detail_mota);
         ivHinh = findViewById(R.id.iv_detail_hinh);
         btnAddToCart = findViewById(R.id.btn_detail_add_to_cart);
+        fabFavorite = findViewById(R.id.fab_favorite);
         
         btnAddToCart.setOnClickListener(v -> {
             themVaoGioHang();
         });
+
+        if (fabFavorite != null) {
+            fabFavorite.setOnClickListener(v -> {
+                if (sanPham == null) return;
+                if (yeuthichDao.isFavorite(sanPham.getId())) {
+                    yeuthichDao.removeFavorite(sanPham.getId());
+                    Toast.makeText(this, "Đã bỏ yêu thích", Toast.LENGTH_SHORT).show();
+                } else {
+                    yeuthichDao.addFavorite(sanPham.getId());
+                    Toast.makeText(this, "Đã thêm vào yêu thích", Toast.LENGTH_SHORT).show();
+                }
+                updateFavoriteIcon();
+            });
+        }
         
         Toolbar toolbar = findViewById(R.id.toolbar_detail);
         setSupportActionBar(toolbar);
@@ -49,6 +69,14 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("");
         }
         toolbar.setNavigationOnClickListener(v -> finish());
+    }
+
+    private void updateFavoriteIcon() {
+        if (fabFavorite != null && sanPham != null && yeuthichDao.isFavorite(sanPham.getId())) {
+            fabFavorite.setImageResource(android.R.drawable.btn_star_big_on);
+        } else if (fabFavorite != null) {
+            fabFavorite.setImageResource(android.R.drawable.btn_star_big_off);
+        }
     }
 
     private void getIntentData() {

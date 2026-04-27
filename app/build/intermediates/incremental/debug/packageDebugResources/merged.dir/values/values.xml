@@ -11,6 +11,10 @@
     <color name="text_secondary">#757575</color>
     <color name="white">#FFFFFF</color>
     <string name="app_name">Robot Trai Cây</string>
+    <style name="CircleImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
     <style name="Theme.Approbotraicay" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         
         <item name="colorPrimary">@color/primary_color</item>

@@ -70,6 +70,35 @@ public class UserDao {
         return result;
     }
 
+    public java.util.List<TaiKhoan> getAllUsers() {
+        java.util.List<TaiKhoan> list = new java.util.ArrayList<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM taikhoan", null);
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                list.add(mapCursorToTaiKhoan(cursor));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return list;
+    }
+
+    public int deleteUser(String username) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        int result = db.delete("taikhoan", "tendn = ?", new String[]{username});
+        db.close();
+        return result;
+    }
+
+    public int updateRole(String username, int role) {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("quyen", role == 1 ? "admin" : "user");
+        int result = db.update("taikhoan", values, "tendn = ?", new String[]{username});
+        db.close();
+        return result;
+    }
+
     private TaiKhoan mapCursorToTaiKhoan(Cursor cursor) {
         TaiKhoan user = new TaiKhoan();
         user.setUsername(cursor.getString(cursor.getColumnIndexOrThrow("tendn")));

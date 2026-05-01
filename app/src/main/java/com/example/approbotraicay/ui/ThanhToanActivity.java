@@ -55,6 +55,8 @@ public class ThanhToanActivity extends AppCompatActivity {
         }
     }
 
+    private long phiShip = 30000; // Phí ship cố định - Dev B UI Logic
+
     private void initData() {
         sessionManager = new SessionManager(this);
         dbHelper = new DatabaseHelper(this);
@@ -64,9 +66,14 @@ public class ThanhToanActivity extends AppCompatActivity {
         }
 
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        String formatted = decimalFormat.format(tongTienCalculated) + "đ";
-        tvTamTinh.setText(formatted);
-        tvTongTien.setText(formatted);
+        tvTamTinh.setText(decimalFormat.format(tongTienCalculated) + "đ");
+        
+        long tongCuoi = tongTienCalculated + phiShip;
+        tvTongTien.setText(decimalFormat.format(tongCuoi) + "đ");
+        
+        // Hiển thị phí ship trong UI (nếu có TextView tương ứng)
+        android.widget.TextView tvPhiShip = findViewById(R.id.tv_thanh_toan_phiship);
+        if (tvPhiShip != null) tvPhiShip.setText(decimalFormat.format(phiShip) + "đ");
     }
 
     private void setupEvents() {
@@ -87,31 +94,44 @@ public class ThanhToanActivity extends AppCompatActivity {
             dh.setFullName(ten);
             dh.setPhone(sdt);
             dh.setAddress(diaChi);
-            dh.setTotal(tongTienCalculated);
+            dh.setShippingFee(phiShip);
+            dh.setTotal(tongTienCalculated + phiShip);
             dh.setDate(new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date()));
-            dh.setStatus(0);
+            dh.setStatus(DonHang.STATUS_PENDING);
 
-            long orderId = new DonHangDao(dbHelper).insert(dh);
-            if (orderId != -1) {
-                ChiTietDonHangDao ctdhDao = new ChiTietDonHangDao(dbHelper);
-                for (GioHang gh : Utils.manggiohang) {
-                    ChiTietDonHang ctdh = new ChiTietDonHang();
-                    ctdh.setOrderId((int) orderId);
-                    ctdh.setProductId(gh.getIdsp());
-                    ctdh.setProductName(gh.getTensp());
-                    ctdh.setQuantity(gh.getSoluong());
-                    ctdh.setPrice(gh.getGiasp());
-                    ctdhDao.insert(ctdh);
-                }
+            // Dev B: Chuyển toàn bộ danh sách chi tiết sang ChiTietDonHang list
+            java.util.List<ChiTietDonHang> details = new java.util.ArrayList<>();
+            for (GioHang gh : Utils.manggiohang) {
+                ChiTietDonHang ctdh = new ChiTietDonHang();
+                ctdh.setProductId(gh.getIdsp());
+                ctdh.setProductName(gh.getTensp());
+                ctdh.setQuantity(gh.getSoluong());
+                ctdh.setPrice(gh.getGiasp());
+                details.add(ctdh);
+            }
 
+            // Gọi logic transactional của Dev A
+            boolean success = new DonHangDao(dbHelper).createOrderTransactionally(dh, details);
+            
+            if (success) {
                 Utils.manggiohang.clear();
-                Toast.makeText(this, "Đặt hàng thành công!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, TrangChuActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                showSuccessDialog();
             } else {
-                Toast.makeText(this, "Có lỗi xảy ra, vui lòng thử lại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Có lỗi xảy ra khi tạo đơn hàng", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void showSuccessDialog() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Đặt hàng thành công")
+                .setMessage("Cảm ơn bạn đã mua hàng tại Robot Trai Cây!")
+                .setCancelable(false)
+                .setPositiveButton("Về trang chủ", (dialog, which) -> {
+                    Intent intent = new Intent(this, TrangChuActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                })
+                .show();
     }
 }

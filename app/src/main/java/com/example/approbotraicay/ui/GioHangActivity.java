@@ -27,8 +27,7 @@ public class GioHangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gio_hang);
 
         initView();
-        setupCart();
-        calculateTotal();
+        initData();
     }
 
     private void initView() {
@@ -44,7 +43,7 @@ public class GioHangActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(v -> finish());
         
         findViewById(R.id.btn_cart_checkout).setOnClickListener(v -> {
-            if (Utils.manggiohang.size() > 0) {
+            if (Utils.manggiohang != null && Utils.manggiohang.size() > 0) {
                 Intent intent = new Intent(this, ThanhToanActivity.class);
                 startActivity(intent);
             } else {
@@ -53,31 +52,46 @@ public class GioHangActivity extends AppCompatActivity {
         });
     }
 
-    private void setupCart() {
+    private void initData() {
         rvGioHang.setLayoutManager(new LinearLayoutManager(this));
-        if (Utils.manggiohang.size() == 0) {
-            llEmpty.setVisibility(View.VISIBLE);
+        if (Utils.manggiohang == null || Utils.manggiohang.isEmpty()) {
+            showEmptyCart();
         } else {
             llEmpty.setVisibility(View.GONE);
+            rvGioHang.setVisibility(View.VISIBLE);
+            
             adapter = new GioHangAdapter(this, Utils.manggiohang, new GioHangAdapter.CartUpdateListener() {
                 @Override
                 public void onCartUpdated() {
                     calculateTotal();
-                    if (Utils.manggiohang.size() == 0) {
-                        llEmpty.setVisibility(View.VISIBLE);
-                    }
                 }
             });
             rvGioHang.setAdapter(adapter);
+            calculateTotal();
         }
     }
 
     private void calculateTotal() {
         long tongTien = 0;
-        for (int i = 0; i < Utils.manggiohang.size(); i++) {
-            tongTien += (Utils.manggiohang.get(i).getGiasp() * Utils.manggiohang.get(i).getSoluong());
+        if (Utils.manggiohang != null) {
+            for (int i = 0; i < Utils.manggiohang.size(); i++) {
+                tongTien += (Utils.manggiohang.get(i).getGiasp() * Utils.manggiohang.get(i).getSoluong());
+            }
         }
-        DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        tvTongTien.setText(decimalFormat.format(tongTien) + "đ");
+        
+        if (tongTien == 0) {
+            showEmptyCart();
+        } else {
+            llEmpty.setVisibility(View.GONE);
+            rvGioHang.setVisibility(View.VISIBLE);
+            DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+            tvTongTien.setText(decimalFormat.format(tongTien) + "đ");
+        }
+    }
+
+    private void showEmptyCart() {
+        llEmpty.setVisibility(View.VISIBLE);
+        rvGioHang.setVisibility(View.GONE);
+        tvTongTien.setText("0đ");
     }
 }

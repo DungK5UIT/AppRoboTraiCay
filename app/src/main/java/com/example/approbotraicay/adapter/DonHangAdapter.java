@@ -40,14 +40,32 @@ public class DonHangAdapter extends RecyclerView.Adapter<DonHangAdapter.ViewHold
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         holder.tvTong.setText(decimalFormat.format(dh.getTotal()) + "đ");
 
-        String status = "Đang xử lý";
+        String status;
+        int color;
         switch (dh.getStatus()) {
-            case 1: status = "Đã xác nhận"; break;
-            case 2: status = "Đang giao"; break;
-            case 3: status = "Thành công"; break;
-            case 4: status = "Đã hủy"; break;
+            case DonHang.STATUS_PROCESSING:
+                status = "Đang xử lý";
+                color = android.graphics.Color.BLUE;
+                break;
+            case DonHang.STATUS_SHIPPING:
+                status = "Đang giao";
+                color = android.graphics.Color.CYAN;
+                break;
+            case DonHang.STATUS_COMPLETED:
+                status = "Thành công";
+                color = android.graphics.Color.GREEN;
+                break;
+            case DonHang.STATUS_CANCELLED:
+                status = "Đã hủy";
+                color = android.graphics.Color.RED;
+                break;
+            default:
+                status = "Chờ xác nhận";
+                color = android.graphics.Color.parseColor("#FF9800");
+                break;
         }
         holder.tvStatus.setText(status);
+        holder.tvStatus.setTextColor(color);
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(dh));
     }

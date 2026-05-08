@@ -33,6 +33,8 @@
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.admin.AdminDonHangActivity" />
         <activity android:name=".ui.YeuThichActivity" />
+        <activity android:name=".ui.admin.AdminDashboardActivity" />
+        <activity android:name=".ui.admin.ThongKeActivity" />
 
     </application>
 

@@ -9,6 +9,10 @@ public class TaiKhoan {
     private String phone;
     private String address;
     private int role; // 0: User, 1: Admin
+    private int status; // 0: Active, 1: Locked
+
+    public static final int STATUS_ACTIVE = 0;
+    public static final int STATUS_LOCKED = 1;
 
     public TaiKhoan() {
     }
@@ -88,5 +92,13 @@ public class TaiKhoan {
 
     public void setRole(int role) {
         this.role = role;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

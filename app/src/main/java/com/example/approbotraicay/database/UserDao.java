@@ -99,6 +99,23 @@ public class UserDao {
         return result;
     }
 
+    public int updateAccountStatus(String username, int status) {
+        ensureStatusColumnExists();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("trangthai", status); // 0: Active, 1: Locked
+        int result = db.update("taikhoan", values, "tendn = ?", new String[]{username});
+        db.close();
+        return result;
+    }
+
+    private void ensureStatusColumnExists() {
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+            db.execSQL("ALTER TABLE taikhoan ADD COLUMN trangthai INTEGER DEFAULT 0");
+        } catch (Exception e) {}
+    }
+
     private TaiKhoan mapCursorToTaiKhoan(Cursor cursor) {
         TaiKhoan user = new TaiKhoan();
         user.setUsername(cursor.getString(cursor.getColumnIndexOrThrow("tendn")));
@@ -118,6 +135,10 @@ public class UserDao {
 
         String role = cursor.getString(cursor.getColumnIndexOrThrow("quyen"));
         user.setRole(role.equalsIgnoreCase("admin") ? 1 : 0);
+
+        int statusIdx = cursor.getColumnIndex("trangthai");
+        if (statusIdx != -1) user.setStatus(cursor.getInt(statusIdx));
+
         return user;
     }
 }

@@ -165,6 +165,45 @@ public class DonHangDao {
         return list;
     }
 
+    public java.util.Map<String, Double> getMonthlyRevenue() {
+        java.util.Map<String, Double> map = new java.util.LinkedHashMap<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        // SQL to group by month/year from dd/MM/yyyy HH:mm
+        String sql = "SELECT SUBSTR(ngaydathang, 4, 7) as month_year, SUM(tongthanhtoan) as total " +
+                     "FROM Dathang " +
+                     "WHERE trangthai = ? " +
+                     "GROUP BY month_year " +
+                     "ORDER BY month_year DESC LIMIT 12";
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(DonHang.STATUS_COMPLETED)});
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                map.put(cursor.getString(0), cursor.getDouble(1));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return map;
+    }
+
+    public java.util.Map<String, Double> getRevenueByCategory() {
+        java.util.Map<String, Double> map = new java.util.LinkedHashMap<>();
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String sql = "SELECT nsp.tenloai, SUM(ct.soluong * ct.dongia) as total " +
+                     "FROM Chitietdonhang ct " +
+                     "JOIN sanpham sp ON ct.masp = sp.masp " +
+                     "JOIN loaisp nsp ON sp.maso = nsp.maloai " +
+                     "JOIN Dathang dh ON ct.id_dathang = dh.id_dathang " +
+                     "WHERE dh.trangthai = ? " +
+                     "GROUP BY nsp.tenloai";
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(DonHang.STATUS_COMPLETED)});
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                map.put(cursor.getString(0), cursor.getDouble(1));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return map;
+    }
+
     private void ensureRequiredColumnsExist() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {

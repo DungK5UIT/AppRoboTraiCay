@@ -23,6 +23,10 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
     private Button btnAddToCart;
     private com.example.approbotraicay.database.YeuthichDao yeuthichDao;
     private com.google.android.material.floatingactionbutton.FloatingActionButton fabFavorite;
+    private com.example.approbotraicay.database.DanhGiaDao danhGiaDao;
+    private androidx.recyclerview.widget.RecyclerView rvReviews;
+    private com.example.approbotraicay.adapter.DanhGiaAdapter reviewAdapter;
+    private java.util.List<com.example.approbotraicay.model.DanhGia> reviewList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +47,17 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
         ivHinh = findViewById(R.id.iv_detail_hinh);
         btnAddToCart = findViewById(R.id.btn_detail_add_to_cart);
         fabFavorite = findViewById(R.id.fab_favorite);
+        rvReviews = findViewById(R.id.rv_reviews);
+        
+        rvReviews.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
+        danhGiaDao = new com.example.approbotraicay.database.DanhGiaDao(new com.example.approbotraicay.database.DatabaseHelper(this));
         
         btnAddToCart.setOnClickListener(v -> {
             themVaoGioHang();
+        });
+
+        findViewById(R.id.btn_write_review).setOnClickListener(v -> {
+            showReviewDialog();
         });
 
         if (fabFavorite != null) {
@@ -87,7 +99,46 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
             tvGia.setText(decimalFormat.format(sanPham.getGia()) + "đ");
             tvMoTa.setText(sanPham.getMoTa());
             Glide.with(this).load(sanPham.getHinhAnhBlob()).into(ivHinh);
+            loadReviews();
         }
+    }
+
+    private void loadReviews() {
+        if (sanPham != null) {
+            reviewList = danhGiaDao.getReviewsByProduct(sanPham.getId());
+            reviewAdapter = new com.example.approbotraicay.adapter.DanhGiaAdapter(reviewList);
+            rvReviews.setAdapter(reviewAdapter);
+        }
+    }
+
+    private void showReviewDialog() {
+        android.view.View dialogView = getLayoutInflater().inflate(R.layout.dialog_danh_gia, null);
+        android.widget.RatingBar rb = dialogView.findViewById(R.id.rb_review);
+        android.widget.EditText et = dialogView.findViewById(R.id.et_review_content);
+
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setPositiveButton("Gửi", (dialog, which) -> {
+                    String content = et.getText().toString().trim();
+                    float rating = rb.getRating();
+                    if (content.isEmpty()) {
+                        Toast.makeText(this, "Vui lòng nhập nội dung", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    
+                    com.example.approbotraicay.model.DanhGia dg = new com.example.approbotraicay.model.DanhGia();
+                    dg.setProductId(sanPham.getId());
+                    dg.setRating(rating);
+                    dg.setComment(content);
+                    dg.setUsername(com.example.approbotraicay.utils.Utils.user_current != null ? com.example.approbotraicay.utils.Utils.user_current.getUsername() : "Khách");
+                    dg.setDate(new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault()).format(new java.util.Date()));
+                    
+                    danhGiaDao.insert(dg);
+                    Toast.makeText(this, "Cảm ơn bạn đã đánh giá!", Toast.LENGTH_SHORT).show();
+                    loadReviews();
+                })
+                .setNegativeButton("Hủy", null)
+                .show();
     }
 
     private void themVaoGioHang() {

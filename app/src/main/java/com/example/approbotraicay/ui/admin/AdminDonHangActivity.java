@@ -24,7 +24,7 @@ public class AdminDonHangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_don_hang);
 
-        donHangDao = new DonHangDao(new DatabaseHelper(this));
+        donHangDao = new DonHangDao(DatabaseHelper.getInstance(this));
         
         initView();
         loadOrders();

@@ -28,7 +28,7 @@ public class QuanLySanPhamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quan_ly_san_pham);
 
-        sanPhamDao = new SanPhamDao(new DatabaseHelper(this));
+        sanPhamDao = new SanPhamDao(DatabaseHelper.getInstance(this));
         
         initView();
         loadData();

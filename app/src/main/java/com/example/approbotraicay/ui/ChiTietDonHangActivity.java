@@ -28,7 +28,7 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chi_tiet_don_hang);
 
-        donHangDao = new com.example.approbotraicay.database.DonHangDao(new DatabaseHelper(this));
+        donHangDao = new com.example.approbotraicay.database.DonHangDao(DatabaseHelper.getInstance(this));
         
         initView();
         initData();
@@ -67,7 +67,7 @@ public class ChiTietDonHangActivity extends AppCompatActivity {
 
             updateStatusUI();
 
-            ChiTietDonHangDao dao = new ChiTietDonHangDao(new DatabaseHelper(this));
+            ChiTietDonHangDao dao = new ChiTietDonHangDao(DatabaseHelper.getInstance(this));
             List<ChiTietDonHang> details = dao.getByOrderId(dh.getId());
             rvChiTiet.setAdapter(new ChiTietDonHangAdapter(details));
         }

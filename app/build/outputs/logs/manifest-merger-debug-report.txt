@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:2:1-37:12
-INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:2:1-37:12
+ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:2:1-41:12
+INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:2:1-41:12
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\a524f72fe73ac00b49755ec0b74bfee0\transformed\material-1.9.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\ca006db957eff1645ee07eb6cf31262d\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\a5e2ddde7106fd44f2616dfbe1353bef\transformed\jetified-appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -63,8 +63,8 @@ ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:5:5-67
 	android:name
 		ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:5:22-64
 application
-ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:7:5-35:19
-INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:7:5-35:19
+ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:7:5-39:19
+INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:7:5-39:19
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\a524f72fe73ac00b49755ec0b74bfee0\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.9.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\a524f72fe73ac00b49755ec0b74bfee0\transformed\material-1.9.0\AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\ca006db957eff1645ee07eb6cf31262d\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -153,6 +153,22 @@ activity#com.example.approbotraicay.ui.ProfileActivity
 ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:33:9-56
 	android:name
 		ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:33:19-53
+activity#com.example.approbotraicay.ui.admin.AdminDonHangActivity
+ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:34:9-67
+	android:name
+		ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:34:19-64
+activity#com.example.approbotraicay.ui.YeuThichActivity
+ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:35:9-57
+	android:name
+		ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:35:19-54
+activity#com.example.approbotraicay.ui.admin.AdminDashboardActivity
+ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:36:9-69
+	android:name
+		ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:36:19-66
+activity#com.example.approbotraicay.ui.admin.ThongKeActivity
+ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:37:9-62
+	android:name
+		ADDED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:37:19-59
 uses-sdk
 INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml

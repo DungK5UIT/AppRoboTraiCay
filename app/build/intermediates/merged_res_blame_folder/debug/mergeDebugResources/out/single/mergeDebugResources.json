@@ -1,11 +1,7 @@
 [
     {
-        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_trang_chu.xml.flat",
-        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_trang_chu.xml"
-    },
-    {
-        "merged": "com.example.approbotraicay.app-debug-32:/drawable_bg_profile_corners.xml.flat",
-        "source": "com.example.approbotraicay.app-main-34:/drawable/bg_profile_corners.xml"
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_dialog_change_password.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\dialog_change_password.xml"
     },
     {
         "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\drawable_bg_search_bar.xml.flat",
@@ -16,28 +12,24 @@
         "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_quan_ly_san_pham.xml"
     },
     {
-        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_don_hang.xml.flat",
-        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_don_hang.xml"
-    },
-    {
         "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_gio_hang.xml.flat",
         "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_gio_hang.xml"
     },
     {
-        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_trang_chu.xml.flat",
-        "source": "com.example.approbotraicay.app-main-34:/layout/activity_trang_chu.xml"
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_chi_tiet_san_pham.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_chi_tiet_san_pham.xml"
     },
     {
-        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_item_gio_hang.xml.flat",
-        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\item_gio_hang.xml"
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_yeu_thich.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_yeu_thich.xml"
     },
     {
-        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\drawable_bg_badge_accent.xml.flat",
-        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\drawable\\bg_badge_accent.xml"
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_quan_ly_san_pham.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_quan_ly_san_pham.xml"
     },
     {
-        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_item_don_hang.xml.flat",
-        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\item_don_hang.xml"
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_dialog_danh_gia.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/dialog_danh_gia.xml"
     },
     {
         "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_login.xml.flat",
@@ -48,24 +40,16 @@
         "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_thanh_toan.xml"
     },
     {
-        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_splash.xml.flat",
-        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_splash.xml"
-    },
-    {
-        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_chi_tiet_san_pham.xml.flat",
-        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_chi_tiet_san_pham.xml"
-    },
-    {
         "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_chi_tiet_don_hang.xml.flat",
         "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_chi_tiet_don_hang.xml"
     },
     {
-        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_item_chi_tiet_don_hang.xml.flat",
-        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\item_chi_tiet_don_hang.xml"
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_admin_dashboard.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_admin_dashboard.xml"
     },
     {
-        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_profile.xml.flat",
-        "source": "com.example.approbotraicay.app-main-34:/layout/activity_profile.xml"
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_item_chi_tiet_don_hang.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\item_chi_tiet_don_hang.xml"
     },
     {
         "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_item_san_pham.xml.flat",
@@ -80,11 +64,83 @@
         "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\item_nhom_san_pham.xml"
     },
     {
-        "merged": "com.example.approbotraicay.app-debug-32:/layout_dialog_change_password.xml.flat",
-        "source": "com.example.approbotraicay.app-main-34:/layout/dialog_change_password.xml"
+        "merged": "com.example.approbotraicay.app-debug-32:/drawable_bg_gradient_stats.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/drawable/bg_gradient_stats.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_chi_tiet_don_hang.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_chi_tiet_don_hang.xml"
     },
     {
         "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_register.xml.flat",
         "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_register.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_trang_chu.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_trang_chu.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\drawable_bg_profile_corners.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\drawable\\bg_profile_corners.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_item_gio_hang.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/item_gio_hang.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_thong_ke.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_thong_ke.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_item_danh_gia.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/item_danh_gia.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_don_hang.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_don_hang.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_profile.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_profile.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/drawable_bg_status_pending.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/drawable/bg_status_pending.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_item_gio_hang.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\item_gio_hang.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\drawable_bg_badge_accent.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\drawable\\bg_badge_accent.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_item_don_hang.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\item_don_hang.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_thanh_toan.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_thanh_toan.xml"
+    },
+    {
+        "merged": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-debug-32:\\layout_activity_chi_tiet_san_pham.xml.flat",
+        "source": "C:\\Users\\NguyenHuuDung\\.gradle\\daemon\\8.7\\com.example.approbotraicay.app-main-34:\\layout\\activity_chi_tiet_san_pham.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/drawable_bg_quantity_selector.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/drawable/bg_quantity_selector.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/drawable_bg_input_field.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/drawable/bg_input_field.xml"
+    },
+    {
+        "merged": "com.example.approbotraicay.app-debug-32:/layout_activity_admin_don_hang.xml.flat",
+        "source": "com.example.approbotraicay.app-main-34:/layout/activity_admin_don_hang.xml"
     }
 ]

@@ -9,6 +9,7 @@ public class ChiTietDonHang implements Serializable {
     private String productName;
     private int quantity;
     private double price;
+    private byte[] imageBlob;
 
     public ChiTietDonHang() {
     }
@@ -20,6 +21,16 @@ public class ChiTietDonHang implements Serializable {
         this.productName = productName;
         this.quantity = quantity;
         this.price = price;
+    }
+
+    public ChiTietDonHang(int id, int orderId, int productId, String productName, int quantity, double price, byte[] imageBlob) {
+        this.id = id;
+        this.orderId = orderId;
+        this.productId = productId;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+        this.imageBlob = imageBlob;
     }
 
     public int getId() {
@@ -68,5 +79,13 @@ public class ChiTietDonHang implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public byte[] getImageBlob() {
+        return imageBlob;
+    }
+
+    public void setImageBlob(byte[] imageBlob) {
+        this.imageBlob = imageBlob;
     }
 }

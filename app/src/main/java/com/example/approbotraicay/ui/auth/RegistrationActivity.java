@@ -83,7 +83,7 @@ public class RegistrationActivity extends AppCompatActivity {
         newUser.setRole(0);
 
         // --- PRIMARY: SQLite Save ---
-        UserDao userDao = new UserDao(new DatabaseHelper(this));
+        UserDao userDao = new UserDao(DatabaseHelper.getInstance(this));
         long id = userDao.insert(newUser);
 
         if (id != -1) {

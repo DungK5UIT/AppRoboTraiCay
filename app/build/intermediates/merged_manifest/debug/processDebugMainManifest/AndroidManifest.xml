@@ -25,7 +25,6 @@
         android:label="Robot Trai Cây"
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
-        android:testOnly="true"
         android:theme="@style/Theme.Approbotraicay.NoActionBar" >
         <activity
             android:name="com.example.approbotraicay.ui.auth.SplashActivity"
@@ -46,6 +45,10 @@
         <activity android:name="com.example.approbotraicay.ui.DonHangActivity" />
         <activity android:name="com.example.approbotraicay.ui.ChiTietDonHangActivity" />
         <activity android:name="com.example.approbotraicay.ui.ProfileActivity" />
+        <activity android:name="com.example.approbotraicay.ui.admin.AdminDonHangActivity" />
+        <activity android:name="com.example.approbotraicay.ui.YeuThichActivity" />
+        <activity android:name="com.example.approbotraicay.ui.admin.AdminDashboardActivity" />
+        <activity android:name="com.example.approbotraicay.ui.admin.ThongKeActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

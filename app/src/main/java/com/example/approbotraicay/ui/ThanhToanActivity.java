@@ -59,7 +59,7 @@ public class ThanhToanActivity extends AppCompatActivity {
 
     private void initData() {
         sessionManager = new SessionManager(this);
-        dbHelper = new DatabaseHelper(this);
+        dbHelper = DatabaseHelper.getInstance(this);
 
         for (GioHang gh : Utils.manggiohang) {
             tongTienCalculated += (gh.getGiasp() * gh.getSoluong());

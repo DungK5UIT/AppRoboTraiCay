@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
         userDao = new UserDao(dbHelper);
         sessionManager = new SessionManager(this);
 

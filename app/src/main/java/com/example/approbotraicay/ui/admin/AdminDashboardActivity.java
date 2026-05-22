@@ -24,7 +24,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
 
-        donHangDao = new DonHangDao(new DatabaseHelper(this));
+        donHangDao = new DonHangDao(DatabaseHelper.getInstance(this));
         
         initView();
         setupEvents();

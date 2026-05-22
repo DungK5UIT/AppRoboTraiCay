@@ -33,7 +33,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chi_tiet_san_pham);
 
-        yeuthichDao = new com.example.approbotraicay.database.YeuthichDao(new com.example.approbotraicay.database.DatabaseHelper(this));
+        yeuthichDao = new com.example.approbotraicay.database.YeuthichDao(com.example.approbotraicay.database.DatabaseHelper.getInstance(this));
         
         initView();
         getIntentData();
@@ -50,7 +50,7 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
         rvReviews = findViewById(R.id.rv_reviews);
         
         rvReviews.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
-        danhGiaDao = new com.example.approbotraicay.database.DanhGiaDao(new com.example.approbotraicay.database.DatabaseHelper(this));
+        danhGiaDao = new com.example.approbotraicay.database.DanhGiaDao(com.example.approbotraicay.database.DatabaseHelper.getInstance(this));
         
         btnAddToCart.setOnClickListener(v -> {
             themVaoGioHang();
@@ -130,7 +130,8 @@ public class ChiTietSanPhamActivity extends AppCompatActivity {
                     dg.setProductId(sanPham.getId());
                     dg.setRating(rating);
                     dg.setComment(content);
-                    dg.setUsername(com.example.approbotraicay.utils.Utils.user_current != null ? com.example.approbotraicay.utils.Utils.user_current.getUsername() : "Khách");
+                    com.example.approbotraicay.utils.SessionManager sessionManager = new com.example.approbotraicay.utils.SessionManager(this);
+                    dg.setUsername(sessionManager.isLoggedIn() ? sessionManager.getUserName() : "Khách");
                     dg.setDate(new java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault()).format(new java.util.Date()));
                     
                     danhGiaDao.insert(dg);

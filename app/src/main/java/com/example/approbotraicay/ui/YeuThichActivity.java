@@ -26,7 +26,7 @@ public class YeuThichActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yeu_thich);
 
-        yeuthichDao = new YeuthichDao(new DatabaseHelper(this));
+        yeuthichDao = new YeuthichDao(DatabaseHelper.getInstance(this));
         
         initView();
         loadFavorites();

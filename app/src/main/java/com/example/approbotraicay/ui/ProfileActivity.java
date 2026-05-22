@@ -41,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void initData() {
         sessionManager = new SessionManager(this);
-        userDao = new UserDao(new DatabaseHelper(this));
+        userDao = new UserDao(DatabaseHelper.getInstance(this));
     }
 
     private void initView() {

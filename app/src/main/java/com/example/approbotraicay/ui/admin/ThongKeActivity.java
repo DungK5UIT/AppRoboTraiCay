@@ -21,7 +21,7 @@ public class ThongKeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thong_ke);
 
-        donHangDao = new DonHangDao(new DatabaseHelper(this));
+        donHangDao = new DonHangDao(DatabaseHelper.getInstance(this));
         
         initView();
         loadTopProducts();

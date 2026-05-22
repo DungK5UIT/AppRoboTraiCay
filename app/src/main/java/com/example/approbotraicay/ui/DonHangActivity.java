@@ -49,7 +49,7 @@ public class DonHangActivity extends AppCompatActivity {
 
     private void initData() {
         sessionManager = new SessionManager(this);
-        donHangDao = new DonHangDao(new DatabaseHelper(this));
+        donHangDao = new DonHangDao(DatabaseHelper.getInstance(this));
 
         List<DonHang> list = donHangDao.getDonHangByUser(sessionManager.getUserName());
         if (list.isEmpty()) {

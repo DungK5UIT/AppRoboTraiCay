@@ -50,9 +50,14 @@ public class TrangChuActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        DatabaseHelper dbHelper = DatabaseHelper.getInstance(this);
         spDao = new SanPhamDao(dbHelper);
         nhomDao = new NhomSanPhamDao(dbHelper);
+
+        // Run Dev A Week 12-13 startup database performance & integrity optimization
+        new Thread(() -> {
+            dbHelper.optimizeDatabase();
+        }).start();
     }
 
     private void initView() {

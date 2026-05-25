@@ -46,7 +46,9 @@ public class AdminDonHangActivity extends AppCompatActivity {
     private void loadOrders() {
         List<DonHang> orders = donHangDao.getAllOrders();
         adapter = new DonHangAdapter(orders, dh -> {
-            showStatusDialog(dh);
+            android.content.Intent intent = new android.content.Intent(AdminDonHangActivity.this, AdminChiTietDonHangActivity.class);
+            intent.putExtra("donhang", dh);
+            startActivity(intent);
         });
         rvOrders.setAdapter(adapter);
     }
@@ -63,5 +65,11 @@ public class AdminDonHangActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadOrders();
     }
 }

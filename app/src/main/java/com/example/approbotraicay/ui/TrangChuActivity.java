@@ -34,6 +34,7 @@ public class TrangChuActivity extends AppCompatActivity {
     private NhomSanPhamAdapter nhomAdapter;
     private android.widget.ImageButton btnHomeCart, btnHomeHistory, btnHomeProfile;
     private com.google.android.material.floatingactionbutton.FloatingActionButton fabCart;
+    private com.google.android.material.floatingactionbutton.FloatingActionButton fabSupport;
     private SanPhamDao spDao;
     private NhomSanPhamDao nhomDao;
     private List<SanPham> allProducts = new ArrayList<>();
@@ -68,6 +69,7 @@ public class TrangChuActivity extends AppCompatActivity {
         btnHomeHistory = findViewById(R.id.btn_home_history);
         btnHomeProfile = findViewById(R.id.btn_home_profile);
         fabCart = findViewById(R.id.fab_cart);
+        fabSupport = findViewById(R.id.fab_support);
 
         // Initialize adapters with empty lists immediately to avoid "No adapter attached" warning
         nhomAdapter = new NhomSanPhamAdapter(new ArrayList<>(), null);
@@ -101,6 +103,10 @@ public class TrangChuActivity extends AppCompatActivity {
         });
         btnHomeProfile.setOnClickListener(v -> {
             startActivity(new Intent(TrangChuActivity.this, ProfileActivity.class));
+        });
+        // Support / ChatBox FAB
+        fabSupport.setOnClickListener(v -> {
+            startActivity(new Intent(TrangChuActivity.this, ChatBoxActivity.class));
         });
     }
 

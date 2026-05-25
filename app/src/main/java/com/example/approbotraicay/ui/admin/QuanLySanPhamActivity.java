@@ -2,7 +2,6 @@ package com.example.approbotraicay.ui.admin;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +19,6 @@ public class QuanLySanPhamActivity extends AppCompatActivity {
     private SanPhamDao sanPhamDao;
     private RecyclerView rvAdminSp;
     private SanPhamAdapter adapter;
-    private Button btnToOrders;
     private FloatingActionButton fabAdd;
 
     @Override
@@ -34,9 +32,16 @@ public class QuanLySanPhamActivity extends AppCompatActivity {
         loadData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Auto-refresh list when returning from Add/Edit screens
+        loadData();
+    }
+
     private void initView() {
         rvAdminSp = findViewById(R.id.rv_admin_san_pham);
-        btnToOrders = findViewById(R.id.btn_admin_to_orders);
+        android.widget.Button btnToOrders = findViewById(R.id.btn_admin_to_orders);
         fabAdd = findViewById(R.id.fab_admin_add_sp);
 
         rvAdminSp.setLayoutManager(new LinearLayoutManager(this));
@@ -45,8 +50,9 @@ public class QuanLySanPhamActivity extends AppCompatActivity {
             startActivity(new Intent(this, AdminDonHangActivity.class));
         });
 
+        // Dev B: Connect FAB to ThemSanPhamActivity
         fabAdd.setOnClickListener(v -> {
-            Toast.makeText(this, "Tính năng Thêm sản phẩm đang phát triển (Cần Dev B hỗ trợ upload ảnh)", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ThemSanPhamActivity.class));
         });
     }
 
@@ -59,12 +65,15 @@ public class QuanLySanPhamActivity extends AppCompatActivity {
     }
 
     private void showOptionsDialog(SanPham sp) {
-        String[] options = {"Chỉnh sửa (Update)", "Xóa sản phẩm (Delete)"};
+        String[] options = {"✏️ Chỉnh sửa", "🗑️ Xóa sản phẩm"};
         new AlertDialog.Builder(this)
                 .setTitle(sp.getTenSanPham())
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) {
-                        Toast.makeText(this, "Chỉnh sửa: " + sp.getTenSanPham(), Toast.LENGTH_SHORT).show();
+                        // Dev B: Open SuaSanPhamActivity with selected product
+                        Intent intent = new Intent(this, SuaSanPhamActivity.class);
+                        intent.putExtra(SuaSanPhamActivity.EXTRA_SAN_PHAM, sp);
+                        startActivity(intent);
                     } else if (which == 1) {
                         confirmDelete(sp);
                     }
@@ -75,11 +84,11 @@ public class QuanLySanPhamActivity extends AppCompatActivity {
     private void confirmDelete(SanPham sp) {
         new AlertDialog.Builder(this)
                 .setTitle("Xác nhận xóa")
-                .setMessage("Bạn có chắc chắn muốn xóa " + sp.getTenSanPham() + "?")
-                .setPositiveButton("Xóa", (dialog, which) -> {
+                .setMessage("Bạn có chắc chắn muốn xóa \"" + sp.getTenSanPham() + "\"?")
+                .setPositiveButton("🗑️ Xóa", (dialog, which) -> {
                     int result = sanPhamDao.deleteSanPham(sp.getId());
                     if (result > 0) {
-                        Toast.makeText(this, "Đã xóa", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "✅ Đã xóa \"" + sp.getTenSanPham() + "\"", Toast.LENGTH_SHORT).show();
                         loadData();
                     }
                 })

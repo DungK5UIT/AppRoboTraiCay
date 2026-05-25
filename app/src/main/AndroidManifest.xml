@@ -36,6 +36,11 @@
         <activity android:name=".ui.admin.AdminDashboardActivity" />
         <activity android:name=".ui.admin.ThongKeActivity" />
 
+        <!-- Dev B: New Activities (Tuần 12-13) -->
+        <activity android:name=".ui.ChatBoxActivity" />
+        <activity android:name=".ui.admin.ThemSanPhamActivity" />
+        <activity android:name=".ui.admin.SuaSanPhamActivity" />
+
     </application>
 
 </manifest>

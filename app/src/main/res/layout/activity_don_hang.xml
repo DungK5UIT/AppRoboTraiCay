@@ -5,19 +5,65 @@
     android:layout_height="match_parent"
     android:background="@color/background_color">
 
+    <!-- Collapsing AppBar with gradient -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar_don_hang"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:elevation="0dp">
+        android:layout_height="160dp"
+        android:background="@color/primary_color">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_don_hang"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@android:drawable/ic_menu_revert"
-            app:title="Đơn hàng của tôi"
-            app:titleTextColor="@color/text_color" />
+            android:layout_height="match_parent"
+            app:contentScrim="@color/primary_color"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="Đơn Hàng Của Tôi"
+            app:collapsedTitleTextColor="@color/white"
+            app:expandedTitleTextColor="@color/white"
+            app:expandedTitleMarginBottom="16dp"
+            app:expandedTitleMarginStart="20dp"
+            app:expandedTitleTextAppearance="@android:style/TextAppearance.Large">
+
+            <!-- Decorative background -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_gradient_stats"
+                app:layout_collapseMode="parallax" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="48dp"
+                android:layout_marginHorizontal="20dp"
+                android:orientation="horizontal"
+                app:layout_collapseMode="parallax">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/donhang"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Theo dõi đơn hàng của bạn"
+                    android:textColor="#CCFFFFFF"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_don_hang"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:navigationIconTint="@color/white"
+                app:layout_collapseMode="pin"
+                app:title="" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -39,29 +85,40 @@
                 android:clipToPadding="false"
                 android:paddingBottom="16dp" />
 
+            <!-- Empty State -->
             <LinearLayout
                 android:id="@+id/ll_empty_don_hang"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="400dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:visibility="gone">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@android:drawable/ic_menu_today"
-                    app:tint="#DDDDDD" />
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/donhang"
+                    android:alpha="0.25" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:text="Chưa có đơn hàng nào"
                     android:textColor="@color/text_secondary"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Hãy đặt hàng ngay để trải nghiệm\ntrái cây tươi ngon nhất!"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

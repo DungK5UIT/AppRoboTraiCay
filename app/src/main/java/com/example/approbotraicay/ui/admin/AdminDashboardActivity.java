@@ -13,11 +13,14 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import com.example.approbotraicay.utils.SessionManager;
+import com.example.approbotraicay.ui.auth.LoginActivity;
 
 public class AdminDashboardActivity extends AppCompatActivity {
     private TextView tvTotalRevenue, tvTodayRevenue;
     private MaterialCardView cardProducts, cardOrders, cardUsers, cardSettings;
     private DonHangDao donHangDao;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_dashboard);
 
         donHangDao = new DonHangDao(DatabaseHelper.getInstance(this));
+        sessionManager = new SessionManager(this);
         
         initView();
         setupEvents();
@@ -59,6 +63,21 @@ public class AdminDashboardActivity extends AppCompatActivity {
         // Other cards can show a "Coming Soon" or handle other modules
         cardUsers.setOnClickListener(v -> {
             android.widget.Toast.makeText(this, "Tính năng Quản lý người dùng đang phát triển", android.widget.Toast.LENGTH_SHORT).show();
+        });
+
+        cardSettings.setOnClickListener(v -> {
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Đăng xuất Admin")
+                    .setMessage("Bạn có chắc chắn muốn đăng xuất khỏi tài khoản quản trị?")
+                    .setPositiveButton("Đăng xuất", (dialog, which) -> {
+                        sessionManager.logout();
+                        Intent intent = new Intent(this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    })
+                    .setNegativeButton("Hủy", null)
+                    .show();
         });
 
         findViewById(R.id.btn_admin_view_stats).setOnClickListener(v -> {

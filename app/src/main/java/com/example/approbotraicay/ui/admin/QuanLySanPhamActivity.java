@@ -12,14 +12,14 @@ import com.example.approbotraicay.adapter.SanPhamAdapter;
 import com.example.approbotraicay.database.DatabaseHelper;
 import com.example.approbotraicay.database.SanPhamDao;
 import com.example.approbotraicay.model.SanPham;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import java.util.List;
 
 public class QuanLySanPhamActivity extends AppCompatActivity {
     private SanPhamDao sanPhamDao;
     private RecyclerView rvAdminSp;
     private SanPhamAdapter adapter;
-    private FloatingActionButton fabAdd;
+    private ExtendedFloatingActionButton fabAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

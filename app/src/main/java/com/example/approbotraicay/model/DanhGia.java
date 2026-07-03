@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class DanhGia implements Serializable {
     private int id;
     private int productId;
+    private int orderId;       // ID đơn hàng — dùng để kiểm tra đã đánh giá chưa
     private String username;
     private float rating;
     private String comment;
@@ -17,6 +18,9 @@ public class DanhGia implements Serializable {
 
     public int getProductId() { return productId; }
     public void setProductId(int productId) { this.productId = productId; }
+
+    public int getOrderId() { return orderId; }
+    public void setOrderId(int orderId) { this.orderId = orderId; }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }

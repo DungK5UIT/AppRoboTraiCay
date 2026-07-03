@@ -38,7 +38,11 @@ public class LoginActivity extends AppCompatActivity {
 
         if (sessionManager.isLoggedIn()) {
             Toast.makeText(this, "Chào mừng quay trở lại, " + sessionManager.getUserName(), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
+            if (sessionManager.getUserRole() == 1) {
+                startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.admin.AdminDashboardActivity.class));
+            } else {
+                startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
+            }
             finish();
             return;
         }
@@ -82,9 +86,13 @@ public class LoginActivity extends AppCompatActivity {
         // --- PRIMARY: SQLite Auth (Following 'Selling App' pattern) ---
         TaiKhoan user = userDao.login(username, password);
         if (user != null) {
-            sessionManager.createLoginSession(user.getId(), user.getFullName(), user.getRole());
+            sessionManager.createLoginSession(user.getId(), user.getUsername(), user.getRole());
             Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
+            if (user.getRole() == 1) {
+                startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.admin.AdminDashboardActivity.class));
+            } else {
+                startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
+            }
             finish();
 
             // --- OPTIONAL: Background sync with Firebase (Personal exercise) ---
@@ -115,9 +123,13 @@ public class LoginActivity extends AppCompatActivity {
                     for (Map.Entry<String, TaiKhoan> entry : response.body().entrySet()) {
                         TaiKhoan u = entry.getValue();
                         if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
-                            sessionManager.createLoginSession(u.getId(), u.getFullName(), u.getRole());
+                            sessionManager.createLoginSession(u.getId(), u.getUsername(), u.getRole());
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công (từ Firebase)!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
+                            if (u.getRole() == 1) {
+                                startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.admin.AdminDashboardActivity.class));
+                            } else {
+                                startActivity(new Intent(LoginActivity.this, com.example.approbotraicay.ui.TrangChuActivity.class));
+                            }
                             finish();
                             found = true;
                             break;

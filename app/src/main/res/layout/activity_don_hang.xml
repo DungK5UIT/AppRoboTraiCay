@@ -9,12 +9,12 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_don_hang"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="wrap_content"
         android:background="@color/primary_color">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="160dp"
             app:contentScrim="@color/primary_color"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="Đơn Hàng Của Tôi"
@@ -64,6 +64,67 @@
                 app:layout_collapseMode="pin"
                 app:title="" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <!-- Filter Chips (outside CollapsingToolbarLayout so it stays visible or scrolls smoothly) -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:background="@color/white">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                app:checkedChip="@+id/chip_all">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_all"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tất cả" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_pending"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chờ xử lý" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_processing"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đang xử lý" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_shipping"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đang giao" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_completed"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đã giao" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_cancelled"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Đã hủy" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -104,7 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Chưa có đơn hàng nào"
+                    android:text="Không tìm thấy đơn hàng"
                     android:textColor="@color/text_secondary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -114,7 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="Hãy đặt hàng ngay để trải nghiệm\ntrái cây tươi ngon nhất!"
+                    android:text="Bạn chưa có đơn hàng nào ở trạng thái này."
                     android:textColor="@color/text_secondary"
                     android:textSize="14sp" />
 

@@ -18,6 +18,7 @@ public class DonHangDao {
         ensureRequiredColumnsExist();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put("tendangnhap", dh.getUsername());   // FIX: lưu username riêng
         values.put("tenkh", dh.getFullName());
         values.put("diachi", dh.getAddress());
         values.put("sdt", dh.getPhone());
@@ -25,14 +26,14 @@ public class DonHangDao {
         values.put("phi_ship", dh.getShippingFee());
         values.put("ngaydathang", dh.getDate());
         values.put("trangthai", dh.getStatus());
-        
+
         long id = db.insert("Dathang", null, values);
         db.close();
         return id;
     }
 
     /**
-     * Dev A Task: Transactional order creation.
+     * Transactional order creation.
      * Inserts both order and its details in a single transaction.
      */
     public boolean createOrderTransactionally(DonHang dh, List<com.example.approbotraicay.model.ChiTietDonHang> details) {
@@ -41,6 +42,7 @@ public class DonHangDao {
         db.beginTransaction();
         try {
             ContentValues orderValues = new ContentValues();
+            orderValues.put("tendangnhap", dh.getUsername()); // FIX: lưu username riêng
             orderValues.put("tenkh", dh.getFullName());
             orderValues.put("diachi", dh.getAddress());
             orderValues.put("sdt", dh.getPhone());
@@ -48,7 +50,7 @@ public class DonHangDao {
             orderValues.put("phi_ship", dh.getShippingFee());
             orderValues.put("ngaydathang", dh.getDate());
             orderValues.put("trangthai", dh.getStatus());
-            
+
             long orderId = db.insert("Dathang", null, orderValues);
             if (orderId == -1) return false;
 
@@ -58,7 +60,7 @@ public class DonHangDao {
                 detailValues.put("masp", ctdh.getProductId());
                 detailValues.put("soluong", ctdh.getQuantity());
                 detailValues.put("dongia", ctdh.getPrice());
-                
+
                 if (db.insert("Chitietdonhang", null, detailValues) == -1) {
                     return false;
                 }
@@ -73,11 +75,17 @@ public class DonHangDao {
         }
     }
 
+    /**
+     * FIX: Query theo cột tendangnhap (username) thay vì tenkh (họ tên)
+     */
     public List<DonHang> getDonHangByUser(String username) {
         ensureRequiredColumnsExist();
         List<DonHang> list = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM Dathang WHERE tenkh = ? ORDER BY id_dathang DESC", new String[]{username});
+        // FIX: dùng cột tendangnhap thay vì tenkh
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM Dathang WHERE tendangnhap = ? ORDER BY id_dathang DESC",
+                new String[]{username});
 
         if (cursor != null && cursor.moveToFirst()) {
             do {
@@ -85,6 +93,7 @@ public class DonHangDao {
             } while (cursor.moveToNext());
             cursor.close();
         }
+        db.close();
         return list;
     }
 
@@ -100,6 +109,7 @@ public class DonHangDao {
             } while (cursor.moveToNext());
             cursor.close();
         }
+        db.close();
         return list;
     }
 
@@ -108,34 +118,40 @@ public class DonHangDao {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("trangthai", status);
-        return db.update("Dathang", values, "id_dathang = ?", new String[]{String.valueOf(orderId)});
+        int result = db.update("Dathang", values, "id_dathang = ?", new String[]{String.valueOf(orderId)});
+        db.close();
+        return result;
     }
 
     public double getTotalRevenue() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT SUM(tongthanhtoan) FROM Dathang WHERE trangthai = ?", new String[]{String.valueOf(DonHang.STATUS_COMPLETED)});
+        Cursor cursor = db.rawQuery("SELECT SUM(tongthanhtoan) FROM Dathang WHERE trangthai = ?",
+                new String[]{String.valueOf(DonHang.STATUS_COMPLETED)});
         double total = 0;
         if (cursor != null && cursor.moveToFirst()) {
             total = cursor.getDouble(0);
             cursor.close();
         }
+        db.close();
         return total;
     }
 
     public double getDailyRevenue(String date) {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT SUM(tongthanhtoan) FROM Dathang WHERE ngaydathang LIKE ? AND trangthai = ?", new String[]{date + "%", String.valueOf(DonHang.STATUS_COMPLETED)});
+        Cursor cursor = db.rawQuery(
+                "SELECT SUM(tongthanhtoan) FROM Dathang WHERE ngaydathang LIKE ? AND trangthai = ?",
+                new String[]{date + "%", String.valueOf(DonHang.STATUS_COMPLETED)});
         double total = 0;
         if (cursor != null && cursor.moveToFirst()) {
             total = cursor.getDouble(0);
             cursor.close();
         }
+        db.close();
         return total;
     }
 
     /**
-     * Dev A Task: Advanced Reporting.
-     * Returns a list of products with their total sold quantity.
+     * Advanced Reporting: Returns top selling products with total sold quantity.
      */
     public java.util.List<com.example.approbotraicay.model.SanPham> getTopSellingProducts(int limit) {
         java.util.List<com.example.approbotraicay.model.SanPham> list = new java.util.ArrayList<>();
@@ -147,7 +163,7 @@ public class DonHangDao {
                      "ORDER BY total_sold DESC " +
                      "LIMIT ?";
         Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(limit)});
-        
+
         if (cursor != null && cursor.moveToFirst()) {
             do {
                 com.example.approbotraicay.model.SanPham sp = new com.example.approbotraicay.model.SanPham(
@@ -162,13 +178,13 @@ public class DonHangDao {
             } while (cursor.moveToNext());
             cursor.close();
         }
+        db.close();
         return list;
     }
 
     public java.util.Map<String, Double> getMonthlyRevenue() {
         java.util.Map<String, Double> map = new java.util.LinkedHashMap<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        // SQL to group by month/year from dd/MM/yyyy HH:mm
         String sql = "SELECT SUBSTR(ngaydathang, 4, 7) as month_year, SUM(tongthanhtoan) as total " +
                      "FROM Dathang " +
                      "WHERE trangthai = ? " +
@@ -181,6 +197,7 @@ public class DonHangDao {
             } while (cursor.moveToNext());
             cursor.close();
         }
+        db.close();
         return map;
     }
 
@@ -201,35 +218,40 @@ public class DonHangDao {
             } while (cursor.moveToNext());
             cursor.close();
         }
+        db.close();
         return map;
     }
 
-    private void ensureRequiredColumnsExist() {
+    /**
+     * Đảm bảo các cột cần thiết tồn tại trong bảng Dathang.
+     * Dùng try-catch vì ALTER TABLE sẽ fail nếu cột đã tồn tại.
+     */
+    public void ensureRequiredColumnsExist() {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        try {
-            db.execSQL("ALTER TABLE Dathang ADD COLUMN trangthai INTEGER DEFAULT 0");
-        } catch (Exception e) {}
-        try {
-            db.execSQL("ALTER TABLE Dathang ADD COLUMN phi_ship REAL DEFAULT 0");
-        } catch (Exception e) {}
+        try { db.execSQL("ALTER TABLE Dathang ADD COLUMN trangthai INTEGER DEFAULT 0"); } catch (Exception e) {}
+        try { db.execSQL("ALTER TABLE Dathang ADD COLUMN phi_ship REAL DEFAULT 0"); } catch (Exception e) {}
+        try { db.execSQL("ALTER TABLE Dathang ADD COLUMN tendangnhap TEXT DEFAULT ''"); } catch (Exception e) {}
     }
 
     private DonHang mapCursorToDonHang(Cursor cursor) {
         DonHang dh = new DonHang();
         dh.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id_dathang")));
         dh.setFullName(cursor.getString(cursor.getColumnIndexOrThrow("tenkh")));
-        dh.setUsername(cursor.getString(cursor.getColumnIndexOrThrow("tenkh")));
         dh.setPhone(cursor.getString(cursor.getColumnIndexOrThrow("sdt")));
         dh.setAddress(cursor.getString(cursor.getColumnIndexOrThrow("diachi")));
         dh.setTotal(cursor.getDouble(cursor.getColumnIndexOrThrow("tongthanhtoan")));
         dh.setDate(cursor.getString(cursor.getColumnIndexOrThrow("ngaydathang")));
-        
+
+        // FIX: đọc username từ cột tendangnhap
+        int usernameIdx = cursor.getColumnIndex("tendangnhap");
+        if (usernameIdx != -1) dh.setUsername(cursor.getString(usernameIdx));
+
         int statusIdx = cursor.getColumnIndex("trangthai");
         if (statusIdx != -1) dh.setStatus(cursor.getInt(statusIdx));
-        
+
         int shipIdx = cursor.getColumnIndex("phi_ship");
         if (shipIdx != -1) dh.setShippingFee(cursor.getDouble(shipIdx));
-        
+
         return dh;
     }
 }

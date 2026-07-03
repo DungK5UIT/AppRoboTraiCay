@@ -105,7 +105,15 @@ public class AdminChiTietDonHangActivity extends AppCompatActivity {
         }
         
         tvStatus.setText(statusText);
-        tvStatus.getBackground().setTint(colorRes);
+        
+        android.graphics.drawable.GradientDrawable bg = new android.graphics.drawable.GradientDrawable();
+        bg.setColor(colorRes);
+        bg.setCornerRadius(40f);
+        tvStatus.setBackground(bg);
+        tvStatus.setTextColor(android.graphics.Color.WHITE);
+        tvStatus.setPadding(
+                (int)(12 * getResources().getDisplayMetrics().density), 4,
+                (int)(12 * getResources().getDisplayMetrics().density), 4);
     }
 
     private void setupEvents() {

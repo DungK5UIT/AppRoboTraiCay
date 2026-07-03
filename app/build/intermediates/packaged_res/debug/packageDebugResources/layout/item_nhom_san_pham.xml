@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_nhom_sp_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="6dp">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        app:cardCornerRadius="32dp"
-        app:cardElevation="2dp"
-        app:strokeWidth="0dp">
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        app:cardCornerRadius="36dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@color/primary_color"
+        app:strokeWidth="2dp">
 
         <ImageView
             android:id="@+id/iv_hinh_nhom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="12dp"
-            android:scaleType="centerInside"
-            android:src="@android:drawable/ic_menu_report_image" />
+            android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery" />
+
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tv_ten_nhom"
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
         android:text="Danh mục"
         android:textColor="@color/text_color"
-        android:textSize="12sp"
+        android:textSize="11sp"
         android:textStyle="bold" />
 
 </LinearLayout>

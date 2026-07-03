@@ -46,19 +46,40 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Thông tin nhận hàng"
-                        android:textColor="@color/primary_color"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Thông tin nhận hàng"
+                            android:textColor="@color/primary_color"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <!-- Status Badge -->
+                        <TextView
+                            android:id="@+id/tv_ctdh_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_status_pending"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="4dp"
+                            android:text="Chờ xác nhận"
+                            android:textColor="@color/white"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_ctdh_ten"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
                         android:text="Tên khách hàng"
                         android:textColor="@color/text_color"
                         android:textSize="16sp"
@@ -80,18 +101,6 @@
                         android:text="Địa chỉ giao hàng"
                         android:textColor="@color/text_secondary" />
 
-                    <TextView
-                        android:id="@+id/tv_ctdh_status"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:background="@drawable/bg_status_pending"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
-                        android:text="Chờ xác nhận"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -177,17 +186,32 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Nút Hủy đơn (chỉ hiện khi STATUS_PENDING) -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_ctdh_cancel"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:text="HỦY ĐƠN HÀNG"
                 android:textColor="#F44336"
                 android:visibility="gone"
                 app:cornerRadius="12dp"
                 app:strokeColor="#F44336" />
+
+            <!-- Nút Đánh giá (chỉ hiện khi STATUS_COMPLETED) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_ctdh_review"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="12dp"
+                android:text="⭐ ĐÁNH GIÁ SẢN PHẨM"
+                android:visibility="gone"
+                android:textAllCaps="false"
+                android:textSize="15sp"
+                app:cornerRadius="12dp"
+                app:icon="@android:drawable/btn_star_big_on"
+                app:iconTint="@color/white" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

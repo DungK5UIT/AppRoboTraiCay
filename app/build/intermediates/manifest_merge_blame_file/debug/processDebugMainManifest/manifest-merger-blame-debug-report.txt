@@ -9,8 +9,8 @@
 9        android:targetSdkVersion="34" />
 10
 11    <uses-permission android:name="android.permission.INTERNET" />
-11-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:5:5-67
-11-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:5:22-64
+11-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:5:5-67
+11-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:5:22-64
 12
 13    <permission
 13-->[androidx.core:core:1.9.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\0925182c953c8bedbf2d41d81086d8b5\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
@@ -24,148 +24,162 @@
 17-->[androidx.core:core:1.9.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\0925182c953c8bedbf2d41d81086d8b5\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 18
 19    <application
-19-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:7:5-39:19
+19-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:7:5-45:19
 20        android:allowBackup="true"
-20-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:8:9-35
+20-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:8:9-35
 21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 21-->[androidx.core:core:1.9.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\0925182c953c8bedbf2d41d81086d8b5\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 22        android:debuggable="true"
 23        android:extractNativeLibs="false"
 24        android:icon="@drawable/ic_launcher"
-24-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:9:9-45
+24-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:9:9-45
 25        android:label="Robot Trai Cây"
-25-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:10:9-39
+25-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:10:9-39
 26        android:roundIcon="@drawable/ic_launcher"
-26-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:11:9-50
+26-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:11:9-50
 27        android:supportsRtl="true"
-27-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:12:9-35
+27-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:12:9-35
 28        android:theme="@style/Theme.Approbotraicay.NoActionBar" >
-28-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:13:9-64
+28-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:13:9-64
 29        <activity
-29-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:15:9-22:20
+29-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:15:9-22:20
 30            android:name="com.example.approbotraicay.ui.auth.SplashActivity"
-30-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:16:13-51
+30-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:16:13-51
 31            android:exported="true" >
-31-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:17:13-36
+31-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:17:13-36
 32            <intent-filter>
-32-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:18:13-21:29
+32-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:18:13-21:29
 33                <action android:name="android.intent.action.MAIN" />
-33-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:19:17-69
-33-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:19:25-66
+33-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:19:17-69
+33-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:19:25-66
 34
 35                <category android:name="android.intent.category.LAUNCHER" />
-35-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:20:17-77
-35-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:20:27-74
+35-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:20:17-77
+35-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:20:27-74
 36            </intent-filter>
 37        </activity>
 38        <activity android:name="com.example.approbotraicay.ui.auth.LoginActivity" />
-38-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:24:9-59
-38-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:24:19-56
+38-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:24:9-59
+38-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:24:19-56
 39        <activity android:name="com.example.approbotraicay.ui.auth.RegistrationActivity" />
-39-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:25:9-66
-39-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:25:19-63
+39-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:25:9-66
+39-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:25:19-63
 40        <activity android:name="com.example.approbotraicay.ui.TrangChuActivity" />
-40-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:26:9-57
-40-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:26:19-54
+40-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:26:9-57
+40-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:26:19-54
 41        <activity android:name="com.example.approbotraicay.ui.GioHangActivity" />
-41-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:27:9-56
-41-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:27:19-53
+41-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:27:9-56
+41-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:27:19-53
 42        <activity android:name="com.example.approbotraicay.ui.ChiTietSanPhamActivity" />
-42-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:28:9-63
-42-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:28:19-60
+42-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:28:9-63
+42-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:28:19-60
 43        <activity android:name="com.example.approbotraicay.ui.admin.QuanLySanPhamActivity" />
-43-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:29:9-68
-43-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:29:19-65
+43-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:29:9-68
+43-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:29:19-65
 44        <activity android:name="com.example.approbotraicay.ui.ThanhToanActivity" />
-44-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:30:9-58
-44-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:30:19-55
+44-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:30:9-58
+44-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:30:19-55
 45        <activity android:name="com.example.approbotraicay.ui.DonHangActivity" />
-45-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:31:9-56
-45-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:31:19-53
+45-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:31:9-56
+45-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:31:19-53
 46        <activity android:name="com.example.approbotraicay.ui.ChiTietDonHangActivity" />
-46-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:32:9-63
-46-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:32:19-60
+46-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:32:9-63
+46-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:32:19-60
 47        <activity android:name="com.example.approbotraicay.ui.ProfileActivity" />
-47-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:33:9-56
-47-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:33:19-53
+47-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:33:9-56
+47-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:33:19-53
 48        <activity android:name="com.example.approbotraicay.ui.admin.AdminDonHangActivity" />
-48-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:34:9-67
-48-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:34:19-64
-49        <activity android:name="com.example.approbotraicay.ui.YeuThichActivity" />
-49-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:35:9-57
-49-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:35:19-54
-50        <activity android:name="com.example.approbotraicay.ui.admin.AdminDashboardActivity" />
-50-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:36:9-69
-50-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:36:19-66
-51        <activity android:name="com.example.approbotraicay.ui.admin.ThongKeActivity" />
-51-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:37:9-62
-51-->D:\Ky6\AppRoboTraiCay\app\src\main\AndroidManifest.xml:37:19-59
-52
-53        <provider
-53-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
-54            android:name="androidx.startup.InitializationProvider"
-54-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
-55            android:authorities="com.example.approbotraicay.androidx-startup"
-55-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
-56            android:exported="false" >
-56-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
-57            <meta-data
-57-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
-58                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-58-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
-59                android:value="androidx.startup" />
-59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
-60            <meta-data
-60-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\96cfcb3a158c57dca5acb4fdfa9dbe96\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
-61                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-61-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\96cfcb3a158c57dca5acb4fdfa9dbe96\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
-62                android:value="androidx.startup" />
-62-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\96cfcb3a158c57dca5acb4fdfa9dbe96\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+48-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:34:9-67
+48-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:34:19-64
+49        <activity android:name="com.example.approbotraicay.ui.admin.AdminChiTietDonHangActivity" />
+49-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:35:9-74
+49-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:35:19-71
+50        <activity android:name="com.example.approbotraicay.ui.YeuThichActivity" />
+50-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:36:9-57
+50-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:36:19-54
+51        <activity android:name="com.example.approbotraicay.ui.admin.AdminDashboardActivity" />
+51-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:37:9-69
+51-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:37:19-66
+52        <activity android:name="com.example.approbotraicay.ui.admin.ThongKeActivity" />
+52-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:38:9-62
+52-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:38:19-59
+53
+54        <!-- Dev B: New Activities (Tuần 12-13) -->
+55        <activity android:name="com.example.approbotraicay.ui.ChatBoxActivity" />
+55-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:41:9-56
+55-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:41:19-53
+56        <activity android:name="com.example.approbotraicay.ui.admin.ThemSanPhamActivity" />
+56-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:42:9-66
+56-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:42:19-63
+57        <activity android:name="com.example.approbotraicay.ui.admin.SuaSanPhamActivity" />
+57-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:43:9-65
+57-->D:\AppRoboTraiCay\app\src\main\AndroidManifest.xml:43:19-62
+58
+59        <provider
+59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+60            android:name="androidx.startup.InitializationProvider"
+60-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+61            android:authorities="com.example.approbotraicay.androidx-startup"
+61-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+62            android:exported="false" >
+62-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
 63            <meta-data
-63-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
-64                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-64-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+63-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+64                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+64-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
 65                android:value="androidx.startup" />
-65-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
-66        </provider>
-67
-68        <receiver
-68-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
-69            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-69-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
-70            android:directBootAware="false"
-70-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
-71            android:enabled="true"
-71-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
-72            android:exported="true"
-72-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
-73            android:permission="android.permission.DUMP" >
-73-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
-74            <intent-filter>
-74-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
-75                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-75-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
-75-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
-76            </intent-filter>
-77            <intent-filter>
-77-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
-78                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
-78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
-79            </intent-filter>
+65-->[androidx.emoji2:emoji2:1.2.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\02fb55f3f06a836ef8957ab70393e50c\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+66            <meta-data
+66-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\96cfcb3a158c57dca5acb4fdfa9dbe96\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:29:13-31:52
+67                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+67-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\96cfcb3a158c57dca5acb4fdfa9dbe96\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:30:17-78
+68                android:value="androidx.startup" />
+68-->[androidx.lifecycle:lifecycle-process:2.6.1] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\96cfcb3a158c57dca5acb4fdfa9dbe96\transformed\jetified-lifecycle-process-2.6.1\AndroidManifest.xml:31:17-49
+69            <meta-data
+69-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+70                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+70-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+71                android:value="androidx.startup" />
+71-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+72        </provider>
+73
+74        <receiver
+74-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+75            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+75-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+76            android:directBootAware="false"
+76-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+77            android:enabled="true"
+77-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+78            android:exported="true"
+78-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+79            android:permission="android.permission.DUMP" >
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
 80            <intent-filter>
-80-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
-81                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
-81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+81                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+81-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
 82            </intent-filter>
 83            <intent-filter>
-83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
-84                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
-84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+84                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+84-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
 85            </intent-filter>
-86        </receiver>
-87    </application>
-88
-89</manifest>
+86            <intent-filter>
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+87                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+87-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+88            </intent-filter>
+89            <intent-filter>
+89-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+90                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+90-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\NguyenHuuDung\.gradle\caches\transforms-4\dbf96ca3550307b96059b4a8e891f4ab\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+91            </intent-filter>
+92        </receiver>
+93    </application>
+94
+95</manifest>

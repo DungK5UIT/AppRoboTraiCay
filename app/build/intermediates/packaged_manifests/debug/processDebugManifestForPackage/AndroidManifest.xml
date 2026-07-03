@@ -46,9 +46,15 @@
         <activity android:name="com.example.approbotraicay.ui.ChiTietDonHangActivity" />
         <activity android:name="com.example.approbotraicay.ui.ProfileActivity" />
         <activity android:name="com.example.approbotraicay.ui.admin.AdminDonHangActivity" />
+        <activity android:name="com.example.approbotraicay.ui.admin.AdminChiTietDonHangActivity" />
         <activity android:name="com.example.approbotraicay.ui.YeuThichActivity" />
         <activity android:name="com.example.approbotraicay.ui.admin.AdminDashboardActivity" />
         <activity android:name="com.example.approbotraicay.ui.admin.ThongKeActivity" />
+
+        <!-- Dev B: New Activities (Tuần 12-13) -->
+        <activity android:name="com.example.approbotraicay.ui.ChatBoxActivity" />
+        <activity android:name="com.example.approbotraicay.ui.admin.ThemSanPhamActivity" />
+        <activity android:name="com.example.approbotraicay.ui.admin.SuaSanPhamActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

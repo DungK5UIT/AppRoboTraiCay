@@ -1,94 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="160dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_margin="6dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="6dp"
+    app:cardElevation="5dp"
     app:strokeWidth="0dp">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <!-- Product Image with overlay badge -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="150dp">
 
             <ImageView
                 android:id="@+id/iv_hinh_san_pham"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 android:src="@android:drawable/ic_menu_gallery" />
 
+            <!-- Gradient overlay at bottom for text readability -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom"
+                android:background="#40000000" />
+
+            <!-- "NEW" Badge -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_badge_accent"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="TƯƠI"
+                android:textColor="@color/white"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <!-- Product Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/tv_ten_san_pham"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="Tên sản phẩm trái cây"
+                android:textColor="@color/text_color"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <!-- Price + Add button row -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
+                android:layout_marginTop="6dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_ten_san_pham"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="2"
-                    android:text="Tên sản phẩm trái cây"
-                    android:textColor="@color/text_color"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Đơn giá"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="9sp" />
 
                     <TextView
                         android:id="@+id/tv_gia_san_pham"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="50.000đ"
+                        android:text="50.000đ/kg"
                         android:textColor="@color/secondary_color"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
+                </LinearLayout>
 
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_add_to_cart"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:backgroundTint="@color/primary_color"
-                        android:insetLeft="0dp"
-                        android:insetTop="0dp"
-                        android:insetRight="0dp"
-                        android:insetBottom="0dp"
-                        android:minWidth="0dp"
-                        android:minHeight="0dp"
-                        android:padding="0dp"
-                        android:text="+"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        app:cornerRadius="8dp" />
-                </RelativeLayout>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_to_cart"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:backgroundTint="@color/primary_color"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:padding="0dp"
+                    android:text="+"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:cornerRadius="18dp" />
+
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
 
-        <!-- Product Badge -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_badge_accent"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="4dp"
-            android:text="MỚI"
-            android:textColor="@color/white"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-    </FrameLayout>
 </com.google.android.material.card.MaterialCardView>
